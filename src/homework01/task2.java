@@ -1,7 +1,7 @@
 package homework01;
 
 public class task2 {
-     public static void main(String[] args){
+     public static void main(String[] args) {
          int two = 2;
          int eight = 8;
          int result1;
