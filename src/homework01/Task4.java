@@ -1,9 +1,9 @@
 package homework01;
 
-public class task4 {
+public class Task4 {
     public static void main(String[] arg) {
         boolean isWeekday = true;
-        boolean isVacation = true;
+        boolean isVacation = false;
 
         if (sleepIn(isWeekday, isVacation)) {
             System.out.println("You can sleep");
@@ -13,6 +13,7 @@ public class task4 {
     }
 
     static boolean sleepIn(boolean weekday, boolean vacation) {
+
         boolean isCanSleep = false;
 
         if (!weekday || vacation) {

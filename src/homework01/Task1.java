@@ -1,6 +1,6 @@
 package homework01;
 
-public class task1 {
+public class Task1 {
     public static void main(String[] args) {
         int numberA = 42;    //0000 0000 0000 0000 0000 0000 0010 1010
         int numberB = 15;    //0000 0000 0000 0000 0000 0000 0000 1111
