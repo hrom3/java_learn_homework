@@ -1,7 +1,5 @@
 package homework01;
 
-import java.util.Objects;
-
 class Task5Switch {
     static void isEqual(String str) {
         switch (str) {
