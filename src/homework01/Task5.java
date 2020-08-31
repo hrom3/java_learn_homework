@@ -10,8 +10,10 @@ public class Task5 {
 
         Task5EqualIf.isEqual(name);
         System.out.println();
+
         Task5EqualIfElse.isEqual(name);
         System.out.println();
+
         Task5Switch.isEqual(name);
     }
 }

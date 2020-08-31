@@ -17,7 +17,7 @@ class Task5EqualIfElse {
         } else if (isNastia) {
             System.out.println("Я тебя так долго ждал");
         } else {
-            System.out.println("Добрый день,  Вы кто?");
+            System.out.println("Добрый день, а Вы кто?");
         }
     }
 }

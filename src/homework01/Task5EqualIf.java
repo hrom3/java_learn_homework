@@ -12,7 +12,7 @@ class Task5EqualIf {
         isVasia = Objects.equals(vasia, str);
         isNastia = Objects.equals(nastia, str);
         if (!isNastia && !isVasia) {
-            System.out.println("Добрый день,  Вы кто?");
+            System.out.println("Добрый день, а Вы кто?");
         }
         if (isVasia) {
             System.out.println("Привет!");

@@ -9,7 +9,6 @@ public class Task6 {
         System.out.println(formattedPhoneNumber);
     }
 
-
     static String createPhoneNumber(int[] number) {
         String formatNumber;
         char[] arrNumber = new char[14];
@@ -24,11 +23,11 @@ public class Task6 {
             } else if (i == 9) {
                 arrNumber[i] = '-';
             } else {
-                arrNumber[i] = (char) ('0' + number[n]);
+                arrNumber[i] = (char) ('0' + number[n]); // добавить код '0' чтобы получить в char число
                 n++;
             }
         }
         formatNumber = new String(arrNumber);
-        return (formatNumber);
+        return formatNumber;
     }
 }

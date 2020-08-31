@@ -9,7 +9,7 @@ class Task5Switch {
                 System.out.println("Я тебя так долго ждал");
                 break;
             default:
-                System.out.println("Добрый день,  Вы кто?");
+                System.out.println("Добрый день, а Вы кто?");
         }
     }
 }
