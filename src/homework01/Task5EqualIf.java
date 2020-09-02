@@ -4,21 +4,21 @@ import java.util.Objects;
 
 class Task5EqualIf {
     static void isEqual(String str) {
-        String vasia = "Вася";
-        String nastia = "Анастасия";
-        boolean isVasia;
-        boolean isNastia;
+        String friend = "Вася";
+        String girlfriend = "Анастасия";
+        boolean isFriend;
+        boolean isGirlfriend;
 
-        isVasia = Objects.equals(vasia, str);
-        isNastia = Objects.equals(nastia, str);
-        if (!isNastia && !isVasia) {
+        isFriend = Objects.equals(friend, str);
+        isGirlfriend = Objects.equals(girlfriend, str);
+        if (!isGirlfriend && !isFriend) {
             System.out.println("Добрый день, а Вы кто?");
         }
-        if (isVasia) {
+        if (isFriend) {
             System.out.println("Привет!");
             System.out.println("Я тебя так долго ждал");
         }
-        if (isNastia) {
+        if (isGirlfriend) {
             System.out.println("Я тебя так долго ждал");
         }
     }

@@ -13,12 +13,11 @@ public class Task6 {
         String formatNumber;
         char[] arrNumber = new char[14];
 
-        for (int i = 0, n = 0; i < 14; i++) {
+        for (int i = 0, n = 0; i < arrNumber.length; i++) {
             if (i == 0) {
                 arrNumber[i] = '(';
             } else if (i == 4) {
                 arrNumber[i] = ')';
-
                 arrNumber[++i] = ' ';
             } else if (i == 9) {
                 arrNumber[i] = '-';

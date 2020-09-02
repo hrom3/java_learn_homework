@@ -4,17 +4,17 @@ import java.util.Objects;
 
 class Task5EqualIfElse {
     static void isEqual(String str) {
-        String vasia = "Вася";
-        String nastia = "Анастасия";
-        boolean isVasia;
-        boolean isNastia;
+        String friend = "Вася";
+        String girlfriend = "Анастасия";
+        boolean isFriend;
+        boolean isGirlfriend;
 
-        isVasia = Objects.equals(vasia, str);
-        isNastia = Objects.equals(nastia, str);
-        if (isVasia) {
+        isFriend = Objects.equals(friend, str);
+        isGirlfriend = Objects.equals(girlfriend, str);
+        if (isFriend) {
             System.out.println("Привет!");
             System.out.println("Я тебя так долго ждал");
-        } else if (isNastia) {
+        } else if (isGirlfriend) {
             System.out.println("Я тебя так долго ждал");
         } else {
             System.out.println("Добрый день, а Вы кто?");
