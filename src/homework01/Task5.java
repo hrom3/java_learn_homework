@@ -11,6 +11,9 @@ public class Task5 {
         Task5EqualIf.isEqual(name);
         System.out.println();
 
+        Task5EqualIfVer2.isEqual(name);
+        System.out.println();
+
         Task5EqualIfElse.isEqual(name);
         System.out.println();
 
