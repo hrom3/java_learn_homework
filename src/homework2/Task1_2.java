@@ -24,10 +24,10 @@ public class Task1_2 {
             if (!isExept) {
                 userNumberLength = lengthOfNumber(userNumber);
                 userNumberArr = new String[userNumberLength];
-                for (int i = userNumberLength-1; i >= 0; i--) {
+                for (int i = userNumberLength - 1; i >= 0; i--) {
                     userNumberNumeral = (int) (userNumber % 10);
                     userNumber /= 10;
-                    multip *=  userNumberNumeral;
+                    multip *= userNumberNumeral;
                     userNumberArr[i] = String.valueOf(userNumberNumeral);
                 }
                 userNumberStr = String.join(" x ", userNumberArr);
@@ -39,7 +39,7 @@ public class Task1_2 {
         }
     }
 
-    static int lengthOfNumber(long number){
+    static int lengthOfNumber(long number) {
         int length;
         long modNumber = Math.abs(number);
         if (modNumber != 0) {

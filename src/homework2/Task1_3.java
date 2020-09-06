@@ -15,8 +15,6 @@ public class Task1_3 {
                 for (int i = 0; i < degreeOfNumber; i++) {
                     result *= number;
                 }
-            } else {
-                result = 1;
             }
             System.out.println("The number " + number + " to the power of " + degreeOfNumber + " is " + result);
         } else {
@@ -30,7 +28,7 @@ public class Task1_3 {
         boolean isBadNumber = true;
         do {
             double userNumber = 0;
-            boolean isExeption = false;
+            boolean isException = false;
             System.out.println("Type number for exponentiation and press ENTER");
             try {
                 Scanner scan = new Scanner(System.in);
@@ -38,9 +36,13 @@ public class Task1_3 {
                 userNumber = Double.parseDouble(userNumberString);
             } catch (NumberFormatException e) {
                 System.out.println("Bad format" + e);
-                isExeption = true;
+                isException = true;
             }
-            if (isExeption) {
+            if (Double.isInfinite(userNumber) || Double.isNaN(userNumber)) {
+                isException = true;
+                System.out.println("Bad format: Infinite or NaN");
+            }
+            if (isException) {
                 continue;
             }
             countOfNumber = userNumber;
@@ -51,10 +53,11 @@ public class Task1_3 {
 
     // input Power
     static int setPowNumber() {
-        int degree = -1;
+        int degree = 0;
+        boolean isBadDegree = true;
         do {
             int userNumber = 0;
-            boolean isExeption = false;
+            boolean isException = false;
             System.out.println("Type integer degree of number and press ENTER");
             try {
                 Scanner scan = new Scanner(System.in);
@@ -62,17 +65,18 @@ public class Task1_3 {
                 userNumber = Integer.parseInt(userNumberString);
             } catch (NumberFormatException e) {
                 System.out.println("Bad format " + e);
-                isExeption = true;
+                isException = true;
             }
-            if (isExeption) {
+            if (isException) {
                 continue;
             }
             if (userNumber >= 0) {
                 degree = userNumber;
+                isBadDegree = false;
             } else {
                 System.out.println("The degree of number must be more than or equal to 0");
             }
-        } while (degree == -1);
+        } while (isBadDegree);
         return (degree);
     }
 

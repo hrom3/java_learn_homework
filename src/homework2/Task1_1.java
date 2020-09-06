@@ -18,7 +18,7 @@ public class Task1_1 {
                 isExept = true;
             }
             if (!isExept) {
-                if (userNumber > 0 && userNumber < 22){
+                if (userNumber > 0 && userNumber < 22) {
                     for (int i = 1; i <= userNumber; i++) {
                         multip *= i;
                     }
