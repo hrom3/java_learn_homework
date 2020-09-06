@@ -38,7 +38,7 @@ public class Task1_5 {
                         int firstMultiplier, int lastMultiplier) {
         for (int i = firstMultiplier; i <= lastMultiplier; i++) {
             for (int j = startNumberInRow; j <= endNumberInRow; j++) {
-                System.out.print(j + " x " + i + " = " + (j * i) + '\t');
+                System.out.printf("%d x %d = %d\t", j, i, (j * i));
             }
             System.out.println();
         }
