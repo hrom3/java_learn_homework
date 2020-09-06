@@ -65,9 +65,6 @@ public class Task1_3 {
                 userNumber = Integer.parseInt(userNumberString);
             } catch (NumberFormatException e) {
                 System.out.println("Bad format " + e);
-                isException = true;
-            }
-            if (isException) {
                 continue;
             }
             if (userNumber >= 0) {
