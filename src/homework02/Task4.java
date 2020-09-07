@@ -1,8 +1,8 @@
-package homework2;
+package homework02;
 
 
-import homework2.task4classes.Task4_2ver3;
-import homework2.task4classes.Task4_4;
+import homework02.task4classes.Task4_2ver3;
+import homework02.task4classes.Task4_4;
 
 import java.util.Arrays;
 

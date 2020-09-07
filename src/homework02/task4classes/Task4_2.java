@@ -1,4 +1,4 @@
-package homework2.task4classes;
+package homework02.task4classes;
 
 import java.util.Arrays;
 
