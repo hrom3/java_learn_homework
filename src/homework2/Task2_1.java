@@ -89,7 +89,7 @@ public class Task2_1 {
             arrOfNumbers = new int[countOfArray];
             int userNumber;
             System.out.println("Type " + countOfArray + " numbers and press ENTER after each numeral");
-            for (int i = 0; i < countOfArray; i++) {
+            for (int i = 0; i < countOfArray; ) {
                 try {
                     Scanner scan = new Scanner(System.in);
                     String userNumberString = scan.next();
@@ -97,10 +97,10 @@ public class Task2_1 {
                 } catch (NumberFormatException e) {
                     System.out.println("Bad format " + e);
                     System.out.println("\nType valid numbers and press ENTER after each numeral");
-                    i--;
                     continue;
                 }
                 arrOfNumbers[i] = userNumber;
+                i++;
             }
         } else {
             System.out.println("error 1");
