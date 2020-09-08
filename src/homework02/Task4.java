@@ -42,7 +42,7 @@ public class Task4 {
                 Arrays.toString(arrFromConsole));
 
         arrFromConsoleBubbleSort = Task4_2ver3.bubbleSorter(arrFromConsole);
-        arrFromConsoleShakerSort = Task4_2ver3.bubbleSorter(arrFromConsole);
+        arrFromConsoleShakerSort = Task4_2ver3.shakerSorter(arrFromConsole);
 
         System.out.println("Sorted Array (bubble) -> \t" +
                 Arrays.toString(arrFromConsoleBubbleSort));
