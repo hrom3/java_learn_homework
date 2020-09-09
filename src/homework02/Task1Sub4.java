@@ -1,6 +1,6 @@
 package homework02;
 
-public class Task1_4 {
+public class Task1Sub4 {
     public static void main(String[] args) {
         long a = 1;
         long aPrevious = 0;
@@ -15,21 +15,26 @@ public class Task1_4 {
                 a += aPrevious;
             }
         }
-        System.out.println("Long before overflow = " + aPrevious + " and after overflow = " + a);
+        System.out.println("Long before overflow = " + aPrevious +
+                " and after overflow = " + a);
     }
 
+    // проверка на переполнение при сложении
     public static boolean willAdditionOverflow(long left, long right) {
         if (right < 0 && right != Long.MIN_VALUE) {
             return willSubtractionOverflow(left, -right);
         } else {
+            // проверка на старший бит
             return (~(left ^ right) & (left ^ (left + right))) < 0;
         }
     }
 
+    // проверка на переполнение при вычитании
     public static boolean willSubtractionOverflow(long left, long right) {
         if (right < 0) {
             return willAdditionOverflow(left, -right);
         } else {
+            // проверка на старший бит (но здесь результат XOR не инвертируется)
             return ((left ^ right) & (left ^ (left - right))) < 0;
         }
     }

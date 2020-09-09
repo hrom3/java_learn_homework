@@ -2,7 +2,7 @@ package homework02;
 
 import java.util.Scanner;
 
-public class Task1_3 {
+public class Task1Sub3 {
     public static void main(String[] args) {
         double number;
         double result = 1;

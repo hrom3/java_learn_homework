@@ -1,6 +1,7 @@
 package homework02;
 
-public class Task1_1 {
+
+public class Task1Sub1 {
     public static void main(String[] args) {
         int argumLength = args.length;
         long userNumber = 0;
@@ -9,7 +10,8 @@ public class Task1_1 {
 
         if (args.length > 0) {
             if (argumLength > 1) {
-                System.out.println("The program is launched with more than 1 argument. Only the first argument will be used");
+                System.out.println("The program is launched with more than 1 argument." +
+                        " Only the first argument will be used");
             }
             try {
                 userNumber = Long.parseLong(args[0]);
@@ -24,7 +26,8 @@ public class Task1_1 {
                     }
                     System.out.println("Result = " + multip);
                 } else if (userNumber >= 22) {
-                    System.out.println("Argument is more than 21. The program cannot calculate this");
+                    System.out.println("Argument is more than 21. " +
+                            "The program cannot calculate this");
                 } else {
                     System.out.println("Argument is less than 1");
                 }

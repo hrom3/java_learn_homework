@@ -1,6 +1,6 @@
 package homework02;
 
-public class Task1_2 {
+public class Task1Sub2 {
     public static void main(String[] args) {
         int argumLength = args.length;
         long userNumber = 0;
@@ -13,7 +13,8 @@ public class Task1_2 {
 
         if (args.length > 0) {
             if (argumLength > 1) {
-                System.out.println("The program is launched with more than 1 argument. Only the first argument will be used");
+                System.out.println("The program is launched with more than 1 argument. " +
+                        "Only the first argument will be used");
             }
             try {
                 userNumber = Long.parseLong(args[0]);
@@ -22,7 +23,7 @@ public class Task1_2 {
                 isExept = true;
             }
             if (!isExept) {
-                userNumberLength = lengthOfNumber(userNumber);
+                userNumberLength = CountNumeralsInNumber.lengthOfNumber(userNumber);
                 userNumberArr = new String[userNumberLength];
                 for (int i = userNumberLength - 1; i >= 0; i--) {
                     userNumberNumeral = (int) (userNumber % 10);
@@ -37,16 +38,5 @@ public class Task1_2 {
         } else {
             System.out.println("The program is launched with no arguments");
         }
-    }
-
-    static int lengthOfNumber(long number) {
-        int length;
-        long modNumber = Math.abs(number);
-        if (modNumber != 0) {
-            length = (int) Math.log10(modNumber) + 1;
-        } else {
-            length = 1;
-        }
-        return length;
     }
 }

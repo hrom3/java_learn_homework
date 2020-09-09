@@ -2,48 +2,7 @@ package homework02;
 
 import java.util.Scanner;
 
-public class Task2_1 {
-    public static void main(String[] agrs) {
-        int arrLength;
-        int[] array;
-
-        arrLength = getArrayLength();
-        array = getNumbersOfArray(arrLength);
-
-        // Task 2.1.1
-        System.out.println("Task 2.1.1");
-        if (array.length > 0) {
-            int i = 0;
-            do {
-                System.out.print(array[i] + " ");
-                i++;
-            } while (i < array.length);
-            System.out.println('\n');
-        }
-
-        // Task 2.1.2
-        System.out.println("Task 2.1.2");
-        int i = 0;
-        while (i < array.length) {
-            System.out.print(array[i] + " ");
-            i++;
-        }
-        System.out.println('\n');
-
-        // Task 2.1.3
-        System.out.println("Task 2.1.3");
-        for (i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println('\n');
-
-        // Task 2.1.4
-        System.out.println("Task 2.1.4");
-        for (int elem : array) {
-            System.out.print(elem + " ");
-        }
-        System.out.println('\n');
-    }
+public class ArraysMy {
 
     /**
      * Метод запрашивает у пользователя число для получения длинны массива
@@ -52,7 +11,7 @@ public class Task2_1 {
      *
      * @return целое число
      */
-    static int getArrayLength() {
+    private static int getArrayLength() {
         int arrayLength = 0;
         int maxArrayLength = 20;
 
@@ -80,11 +39,11 @@ public class Task2_1 {
      * пользователя, после ввода каждого числа необходимо нажать "Enter"
      * ОГРАНИЧЕНИЯ: только целые числа
      *
-     * @param countOfArray длина массива не может быть меньше 0
      * @return массив целочисленныз начений
      */
-    static int[] getNumbersOfArray(int countOfArray) {   // ввод чисел пользователем
+    public static int[] getNumbersForArray() {   // ввод чисел пользователем
         int[] arrOfNumbers;
+        int countOfArray = getArrayLength();
         if (countOfArray > 0) {
             arrOfNumbers = new int[countOfArray];
             int userNumber;
@@ -108,6 +67,73 @@ public class Task2_1 {
         }
         return arrOfNumbers;
     }
+
+    public int[] createRandomArray() {
+        int maxArrayLength = 10;
+        int minArrayLength = 5;
+        int minNumber = -10;
+        int maxNumber = 10;
+        int arrLength;
+        int[] arr;
+
+        arrLength = getArrLength(minArrayLength, maxArrayLength);
+        if (arrLength < 1) {
+            System.out.println("Bad array length");
+            return new int[0];
+        }
+
+        arr = getRandomArray(arrLength, minNumber, maxNumber);
+
+        return arr;
+    }
+
+    int getArrLength(int min, int max) {
+        int length;
+        int temp;
+
+        if (min <= 0 || max <= 0 || max <= min) {
+            System.out.println("Bad data of parameters");
+            return 0;
+        }
+        temp = max - min + 1;
+        length = (int) (Math.random() * temp) + min;
+        return length;
+    }
+
+    int[] getRandomArray(int arrayLength, int minNumber, int maxNumber) {
+        int[] arrWithRandomNumber;
+        int range;
+
+        if (arrayLength < 1) {
+            System.out.println("Bad array length");
+            return new int[0];
+        }
+        if (maxNumber <= minNumber) {
+            System.out.println("Bad data of parameters");
+            return new int[0];
+        }
+
+        arrWithRandomNumber = new int[arrayLength];
+        range = maxNumber - minNumber + 1;
+
+        for (int i = 0; i < arrWithRandomNumber.length; i++) {
+            arrWithRandomNumber[i] = (int) (Math.random() * range) + minNumber;
+        }
+        return arrWithRandomNumber;
+    }
+
+
+    /**
+     * Метод переворачивает одномерный массив целых чисел
+     * @param arr массив для работы
+     * @return возврашаемый массив
+     */
+    public static int[] reversArray(int[] arr) {
+        for (int i = 0; i < arr.length / 2; i++) {
+            int tmp = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = tmp;
+        }
+        return arr;
+    }
 }
-
-

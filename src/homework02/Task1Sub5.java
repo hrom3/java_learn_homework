@@ -1,6 +1,6 @@
 package homework02;
 
-public class Task1_5 {
+public class Task1Sub5 {
     public static void main(String[] args) {
         int startNumber = 2;
         int endNumber = 9;
@@ -17,20 +17,17 @@ public class Task1_5 {
             return;
         }
         System.out.println();
-        System.out.println("\t \t \t Таблица умножения");
+        System.out.println("\t \t \t Таблица умножения\n");
         rows = (int) Math.ceil((double) (endNumber -
                 startNumber + 1) / columnsInRow);
         for (int i = 0, j = 1; i < rows; i++, j++) {
             startNumberInRow = startNumber + (columnsInRow * i);
             endNumberInRow = Math.min(startNumber - 1 + (columnsInRow * j),
                     endNumber);
-
             columns(startNumberInRow, endNumberInRow, firstNumeralToMult,
                     lastNumeralToMult);
             System.out.println();
         }
-
-
     }
 
     // method of columns construction

@@ -1,12 +1,12 @@
 package homework02;
 
-public class Task2_2 {
+import static homework02.ArraysMy.getNumbersForArray;
+
+public class Task2Sub2 {
     public static void main(String[] agrs) {
-        int arrLength;
         int[] array;
 
-        arrLength = Task2_1.getArrayLength();
-        array = Task2_1.getNumbersOfArray(arrLength);
+        array = getNumbersForArray();
 
         // Task 2.2
         System.out.println("Task 2.2");
