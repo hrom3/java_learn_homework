@@ -3,7 +3,7 @@ package homework02.task4classes;
 import java.util.Arrays;
 
 
-public class Task4_2 {
+public class Task4Sub2 {
 
     /**
      * Bubble sort of array

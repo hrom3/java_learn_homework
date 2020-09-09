@@ -2,7 +2,7 @@ package homework02.task4classes;
 
 import java.util.Arrays;
 
-public class Task4_2ver3 {
+public class Task4Sub2Ver3 {
 
     static void toSwap(int[] arr, int a, int b) {
         int temp = arr[a];

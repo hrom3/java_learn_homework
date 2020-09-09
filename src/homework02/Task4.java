@@ -1,7 +1,7 @@
 package homework02;
 
 
-import homework02.task4classes.Task4_2ver3;
+import homework02.task4classes.Task4Sub2Ver3;
 
 import java.util.Arrays;
 
@@ -16,18 +16,18 @@ public class Task4 {
         int[] testArrMy = {4, 8, 33, -5, -965, 0};
 
         // Bubble sorting
-        int[] sortTestArr1 = Task4_2ver3.bubbleSorter(testArr1);
-        int[] sortTestArr2 = Task4_2ver3.bubbleSorter(testArr2);
-        int[] sortTestArr3 = Task4_2ver3.bubbleSorter(testArr3);
-        int[] sortTestArr4 = Task4_2ver3.bubbleSorter(testArr4);
-        int[] sortTestArr5 = Task4_2ver3.bubbleSorter(testArrMy);
+        int[] sortTestArr1 = Task4Sub2Ver3.bubbleSorter(testArr1);
+        int[] sortTestArr2 = Task4Sub2Ver3.bubbleSorter(testArr2);
+        int[] sortTestArr3 = Task4Sub2Ver3.bubbleSorter(testArr3);
+        int[] sortTestArr4 = Task4Sub2Ver3.bubbleSorter(testArr4);
+        int[] sortTestArr5 = Task4Sub2Ver3.bubbleSorter(testArrMy);
 
         // Shaker sorting
-        int[] sortTestArr1S = Task4_2ver3.shakerSorter(testArr1);
-        int[] sortTestArr2S = Task4_2ver3.shakerSorter(testArr2);
-        int[] sortTestArr3S = Task4_2ver3.shakerSorter(testArr3);
-        int[] sortTestArr4S = Task4_2ver3.shakerSorter(testArr4);
-        int[] sortTestArr5S = Task4_2ver3.shakerSorter(testArrMy);
+        int[] sortTestArr1S = Task4Sub2Ver3.shakerSorter(testArr1);
+        int[] sortTestArr2S = Task4Sub2Ver3.shakerSorter(testArr2);
+        int[] sortTestArr3S = Task4Sub2Ver3.shakerSorter(testArr3);
+        int[] sortTestArr4S = Task4Sub2Ver3.shakerSorter(testArr4);
+        int[] sortTestArr5S = Task4Sub2Ver3.shakerSorter(testArrMy);
 
         System.out.println(Arrays.toString(testArr1) +
                 " -> bubble " + Arrays.toString(sortTestArr1) +
@@ -53,8 +53,8 @@ public class Task4 {
 
         ArraysMy getArr = new ArraysMy();
         arrOfNumber = getArr.createRandomArray();
-        arrOfNumberBubbleSort = Task4_2ver3.bubbleSorter(arrOfNumber);
-        arrOfNumberShakerSort = Task4_2ver3.shakerSorter(arrOfNumber);
+        arrOfNumberBubbleSort = Task4Sub2Ver3.bubbleSorter(arrOfNumber);
+        arrOfNumberShakerSort = Task4Sub2Ver3.shakerSorter(arrOfNumber);
 
         System.out.println("Random array\t\t  -> \t" +
                 Arrays.toString(arrOfNumber));
@@ -70,8 +70,8 @@ public class Task4 {
         int[] arrFromConsoleShakerSort;
 
         arrFromConsole = ArraysMy.getNumbersForArray();
-        arrFromConsoleBubbleSort = Task4_2ver3.bubbleSorter(arrFromConsole);
-        arrFromConsoleShakerSort = Task4_2ver3.shakerSorter(arrFromConsole);
+        arrFromConsoleBubbleSort = Task4Sub2Ver3.bubbleSorter(arrFromConsole);
+        arrFromConsoleShakerSort = Task4Sub2Ver3.shakerSorter(arrFromConsole);
 
         System.out.println("Array from console\t  -> \t" +
                 Arrays.toString(arrFromConsole));
