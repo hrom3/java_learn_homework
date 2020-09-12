@@ -1,7 +1,5 @@
 package homework03;
 
-import java.sql.SQLOutput;
-
 public class Task2 {
     public static void main(String[] args) {
         CalculatorWithOperator calc = new CalculatorWithOperator();
@@ -38,6 +36,12 @@ public class Task2 {
 
         System.out.printf(String.format("Result = %.3f\n", result5));
 
+        result2_1 = calc.division(result5, 0);
+        result2_2 = calc.division(result5, 0.0d);
+
+        System.out.println(result2_1);
+        System.out.println(result2_2);
+
         CalculatorWithMathExtends task7 = new CalculatorWithMathExtends();
         a = task7.division(28, 5);
         b = task7.power(a, 2);
@@ -46,6 +50,12 @@ public class Task2 {
         result7 = task7.add(d, b);
 
         System.out.printf(String.format("Result = %.3f\n", result7));
+
+        result2_1 = calc.division(result7, 0);
+        result2_2 = calc.division(result7, 0.0d);
+
+        System.out.println(result2_1);
+        System.out.println(result2_2);
 
     }
 }
