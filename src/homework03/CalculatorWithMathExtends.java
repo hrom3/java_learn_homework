@@ -1,6 +1,8 @@
 package homework03;
 
 public class CalculatorWithMathExtends extends CalculatorWithOperator {
+
+
     /**
      * Метод возведения числа в степень
      *
@@ -8,8 +10,9 @@ public class CalculatorWithMathExtends extends CalculatorWithOperator {
      * @param degree  степень целой положительное число
      * @return  результат
      */
+    @Override
     public double power(double base, int degree) {
-        return  Math.pow(base,degree);
+        return Math.pow(base,degree);
     }
 
     /**
@@ -18,6 +21,7 @@ public class CalculatorWithMathExtends extends CalculatorWithOperator {
      * @param number число для получения модуля
      * @return модуль числа
      */
+    @Override
     public double abs(double number) {
         return Math.abs(number);
     }
@@ -29,7 +33,9 @@ public class CalculatorWithMathExtends extends CalculatorWithOperator {
      * быть только положительным, отрицательное вернет NaN
      * @return корень числа
      */
+    @Override
     public double sqrt(double number) {
         return Math.sqrt(number);
     }
 }
+
