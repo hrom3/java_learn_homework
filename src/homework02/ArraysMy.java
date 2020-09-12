@@ -68,6 +68,13 @@ public class ArraysMy {
         return arrOfNumbers;
     }
 
+    /**
+     * Метод создает массив случайного размера (в пределах заданных
+     * в переменных maxArrayLength и minArrayLength) случайными значениями
+     * (в пределах minNumber и maxNumber)
+     *
+     * @return возвращаемый одномерный массив
+     */
     public int[] createRandomArray() {
         int maxArrayLength = 10;
         int minArrayLength = 5;
@@ -87,6 +94,14 @@ public class ArraysMy {
         return arr;
     }
 
+    /**
+     * Метод получения случайного числа (в пределах переданных
+     * в переменных min и max)
+     *
+     * @param min минимальное значение диапазона
+     * @param max максимальное значение диапазона
+     * @return возвращаемое значение
+     */
     int getArrLength(int min, int max) {
         int length;
         int temp;
@@ -100,6 +115,16 @@ public class ArraysMy {
         return length;
     }
 
+    /**
+     * Метод создает массив размером arrayLength и  заполняет
+     * случайными значениями (в пределах диапазона minNumber
+     * и maxNumber)
+     *
+     * @param arrayLength размер создоваемого массива
+     * @param minNumber минимальное значение диапазона
+     * @param maxNumber максимальное значение диапазона
+     * @return возвращаемый одномерный массив
+     */
     int[] getRandomArray(int arrayLength, int minNumber, int maxNumber) {
         int[] arrWithRandomNumber;
         int range;
@@ -121,7 +146,6 @@ public class ArraysMy {
         }
         return arrWithRandomNumber;
     }
-
 
     /**
      * Метод переворачивает одномерный массив целых чисел

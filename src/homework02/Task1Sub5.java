@@ -31,6 +31,15 @@ public class Task1Sub5 {
     }
 
     // method of columns construction
+
+    /**
+     * Метод построения строки таблицы умножения
+     * 
+     * @param startNumberInRow
+     * @param endNumberInRow
+     * @param firstMultiplier
+     * @param lastMultiplier
+     */
     static void columns(int startNumberInRow, int endNumberInRow,
                         int firstMultiplier, int lastMultiplier) {
         for (int i = firstMultiplier; i <= lastMultiplier; i++) {

@@ -6,23 +6,33 @@ public class Task1Sub3 {
     public static void main(String[] args) {
         double number;
         double result = 1;
-        int degreeOfNumber;
+        int degreeOfNumber = 0;
 
         number = setNumber();
         if (number != 0) {
             degreeOfNumber = setPowNumber();
-            if (degreeOfNumber != 0) {
+            if (degreeOfNumber > 0) {
                 for (int i = 0; i < degreeOfNumber; i++) {
                     result *= number;
                 }
+            } else if (degreeOfNumber < 0) {
+                degreeOfNumber = -degreeOfNumber;
+                for (int i = 0; i < degreeOfNumber; i++) {
+                    result *= number;
+                }
+                result = 1 / result;
             }
             System.out.println("The number " + number + " to the power of " + degreeOfNumber + " is " + result);
         } else {
-            System.out.println("The number " + number + " cannot be raised to a power");
+            System.out.println("The number " + number + " is always 0");
         }
     }
 
-    // input Number
+    /**
+     * Метод получения числа из консоли
+     *
+     * @return возвращаемое значение
+     */
     static double setNumber() {
         double countOfNumber = 0;
         boolean isBadNumber = true;
@@ -51,13 +61,17 @@ public class Task1Sub3 {
         return countOfNumber;
     }
 
-    // input Power
+    /**
+     * Метод получения из консоли значения степени
+     * (целое число)
+     *
+     * @return значение степени
+     */
     static int setPowNumber() {
         int degree = 0;
+        int userNumber;
         boolean isBadDegree = true;
         do {
-            int userNumber = 0;
-            boolean isException = false;
             System.out.println("Type integer degree of number and press ENTER");
             try {
                 Scanner scan = new Scanner(System.in);
@@ -67,14 +81,10 @@ public class Task1Sub3 {
                 System.out.println("Bad format " + e);
                 continue;
             }
-            if (userNumber >= 0) {
-                degree = userNumber;
-                isBadDegree = false;
-            } else {
-                System.out.println("The degree of number must be more than or equal to 0");
-            }
+            degree = userNumber;
+            isBadDegree = false;
         } while (isBadDegree);
-        return (degree);
+        return degree;
     }
 
 }

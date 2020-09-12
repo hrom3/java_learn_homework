@@ -19,7 +19,14 @@ public class Task1Sub4 {
                 " and after overflow = " + a);
     }
 
-    // проверка на переполнение при сложении
+    /**
+     * Метод проверки на переполнение при сложении
+     *
+     * @param left первое слогаемое
+     * @param right второе слогаемое
+     * @return возвращаемое значение, если истина то переполнение наступило,
+     * иначе не было переполнения
+     */
     public static boolean willAdditionOverflow(long left, long right) {
         if (right < 0 && right != Long.MIN_VALUE) {
             return willSubtractionOverflow(left, -right);
@@ -29,7 +36,14 @@ public class Task1Sub4 {
         }
     }
 
-    // проверка на переполнение при вычитании
+    /**
+     * Метод проверки на переполнение при вычитании
+     *
+     * @param left первое уменьшаемое
+     * @param right второе вычитаемое
+     * @return возвращаемое значение, если истина то переполнение наступило,
+     * иначе не было переполнения
+     */
     public static boolean willSubtractionOverflow(long left, long right) {
         if (right < 0) {
             return willAdditionOverflow(left, -right);
