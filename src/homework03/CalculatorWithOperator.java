@@ -1,6 +1,7 @@
 package homework03;
 
-public class CalculatorWithOperator {
+// Task 1
+public class CalculatorWithOperator implements ICalculator {
 
     /**
      * Метод сложения 2 чисел
@@ -16,8 +17,8 @@ public class CalculatorWithOperator {
     /**
      * Метод вычитания 2 чисел
      *
-     * @param first   уменьшаемое
-     * @param second  вычитаемое
+     * @param first  уменьшаемое
+     * @param second вычитаемое
      * @return результат
      */
     public double subtr(double first, double second) {
@@ -49,9 +50,9 @@ public class CalculatorWithOperator {
     /**
      * Метод возведения числа в степень
      *
-     * @param base    число для возведения
-     * @param degree  степень целой положительное число
-     * @return
+     * @param base   число для возведения
+     * @param degree степень целое число
+     * @return результат
      */
     public double power(double base, int degree) {
         double result = 1;
@@ -64,8 +65,15 @@ public class CalculatorWithOperator {
         if (Double.isNaN(base) || Double.isInfinite(base)) {
             return Double.NaN;
         }
-        for (int i = 0; i < degree; i++) {
-            result *= base;
+        if (degree > 1) {
+            for (int i = 0; i < degree; i++) {
+                result *= base;
+            }
+        } else {
+            for (int i = degree; i < 0; i++) {
+                result *= base;
+            }
+            result = 1 / result;
         }
         return result;
     }
@@ -86,12 +94,12 @@ public class CalculatorWithOperator {
      * Метод извлечения квадратного корня из числа
      *
      * @param number число для извлечения корня может
-     * быть только положительным, отрицательное вернет NaN
+     *               быть только положительным, отрицательное вернет NaN
      * @return корень числа
      */
     public double sqrt(double number) {
         if (number < 0) {
-           return Double.NaN;
+            return Double.NaN;
         }
         if (number == 0) {
             return 0;
@@ -140,11 +148,11 @@ public class CalculatorWithOperator {
 
         // получаем результат методом Ньютона
         for (int i = 0; i < 10 && !isEqual; i++) {
-                oldResult = result;
-                result = 0.5 * (result + (number / result));
-                isEqual = oldResult == result;
-            }
-        return  result;
+            oldResult = result;
+            result = 0.5 * (result + (number / result));
+            isEqual = oldResult == result;
+        }
+        return result;
     }
 }
 
