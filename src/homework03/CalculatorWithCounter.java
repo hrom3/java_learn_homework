@@ -1,10 +1,16 @@
 package homework03;
 
-public class CalculatorWithCounter {
+//Task 8
+public class CalculatorWithCounter implements ICalculator {
     private int countOperation = 0;
     private CalculatorWithOperator calcOper = new CalculatorWithOperator();
     private CalculatorWithMathCopy calcCopy = new CalculatorWithMathCopy();
     private CalculatorWithMathExtends calcExt = new CalculatorWithMathExtends();
+    private ICalculator calcType;
+
+    public CalculatorWithCounter(int calcType) {
+        this.calcType = getCalculator(calcType);
+    }
 
     public int getCountOperation() {
         return countOperation;
@@ -12,48 +18,48 @@ public class CalculatorWithCounter {
 
     public double add(double first, double second) {
         countOperation++;
-        return calcOper.add(first, second);
+        return calcType.add(first, second);
     }
 
     public double subtr(double first, double second) {
         countOperation++;
-        return calcCopy.subtr(first, second);
+        return calcType.subtr(first, second);
     }
 
-    double multipl(double first, double second) {
+    public double multipl(double first, double second) {
         countOperation++;
-        return calcExt.multipl(first, second);
+        return calcType.multipl(first, second);
     }
-    double division(double first, double second) {
+
+    public double division(double first, double second) {
         countOperation++;
-        return calcExt.division(first, second);
+        return calcType.division(first, second);
     }
 
-    double power(double base, int degree) {
+    public double power(double base, int degree) {
         countOperation++;
-        return calcCopy.power(base, degree);
+        return calcType.power(base, degree);
     }
 
-    double abs(double number) {
+    public double abs(double number) {
         countOperation++;
-        return calcOper.abs(number);
+        return calcType.abs(number);
     }
 
-    double sqrt(double number) {
+    public double sqrt(double number) {
         countOperation++;
-        return calcExt.sqrt(number);
+        return calcType.sqrt(number);
     }
 
-//    public static ICalculator getCalculator(int type) {
-//        switch (type) {
-//            case 1:
-//                return new CalculatorWithOperator();
-//            case 0:
-//                return new CalculatorWithMathCopy();
-//            case -1:
-//            default:
-//                return new CalculatorWithMathExtends();
-//        }
-//    }
-
+    private ICalculator getCalculator(int type) {
+        switch (type) {
+            case 0:
+                return calcOper;
+            case 1:
+                return calcCopy;
+            case 2:
+            default:
+                return calcExt;
+        }
+    }
 }
