@@ -1,6 +1,8 @@
 package homework03;
 
-public class CalculatorWithMathCopy {
+// Task 3 Task 4
+public class CalculatorWithMathCopy implements ICalculator {
+
     /**
      * Метод сложения 2 чисел
      *
@@ -8,6 +10,7 @@ public class CalculatorWithMathCopy {
      * @param second второе слогаемое
      * @return результат
      */
+
     public double add(double first, double second) {
         return first + second;
     }
@@ -15,8 +18,8 @@ public class CalculatorWithMathCopy {
     /**
      * Метод вычитания 2 чисел
      *
-     * @param first   уменьшаемое
-     * @param second  вычитаемое
+     * @param first  уменьшаемое
+     * @param second вычитаемое
      * @return результат
      */
     public double subtr(double first, double second) {
@@ -48,12 +51,12 @@ public class CalculatorWithMathCopy {
     /**
      * Метод возведения числа в степень
      *
-     * @param base    число для возведения
-     * @param degree  степень целой положительное число
-     * @return  результат
+     * @param base   число для возведения
+     * @param degree степень целое число
+     * @return результат
      */
     public double power(double base, int degree) {
-        return  Math.pow(base,degree);
+        return Math.pow(base, degree);
     }
 
     /**
@@ -70,7 +73,7 @@ public class CalculatorWithMathCopy {
      * Метод извлечения квадратного корня из числа
      *
      * @param number число для извлечения корня может
-     * быть только положительным, отрицательное вернет NaN
+     *               быть только положительным, отрицательное вернет NaN
      * @return корень числа
      */
     public double sqrt(double number) {
