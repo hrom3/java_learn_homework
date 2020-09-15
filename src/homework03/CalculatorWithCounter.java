@@ -3,9 +3,6 @@ package homework03;
 //Task 8
 public class CalculatorWithCounter implements ICalculator {
     private int countOperation = 0;
-    private CalculatorWithOperator calcOper = new CalculatorWithOperator();
-    private CalculatorWithMathCopy calcCopy = new CalculatorWithMathCopy();
-    private CalculatorWithMathExtends calcExt = new CalculatorWithMathExtends();
     private ICalculator calcType;
 
     public CalculatorWithCounter(int calcType) {
@@ -14,6 +11,18 @@ public class CalculatorWithCounter implements ICalculator {
 
     public int getCountOperation() {
         return countOperation;
+    }
+
+    private ICalculator getCalculator(int type) {
+        switch (type) {
+            case 0:
+                return new CalculatorWithOperator();
+            case 1:
+                return new CalculatorWithMathCopy();
+            case 2:
+            default:
+                return new CalculatorWithMathExtends();
+        }
     }
 
     public double add(double first, double second) {
@@ -49,17 +58,5 @@ public class CalculatorWithCounter implements ICalculator {
     public double sqrt(double number) {
         countOperation++;
         return calcType.sqrt(number);
-    }
-
-    private ICalculator getCalculator(int type) {
-        switch (type) {
-            case 0:
-                return calcOper;
-            case 1:
-                return calcCopy;
-            case 2:
-            default:
-                return calcExt;
-        }
     }
 }
