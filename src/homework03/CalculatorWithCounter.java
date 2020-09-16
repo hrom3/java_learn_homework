@@ -3,7 +3,7 @@ package homework03;
 //Task 8
 public class CalculatorWithCounter implements ICalculator {
     private int countOperation = 0;
-    private ICalculator calcType;
+    private final ICalculator calcType;
 
     public CalculatorWithCounter(int calcType) {
         this.calcType = getCalculator(calcType);
