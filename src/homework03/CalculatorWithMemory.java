@@ -1,13 +1,17 @@
 package homework03;
 // Task 10
 public class CalculatorWithMemory extends CalculatorWithCounter{
-    private double memory = Double.NaN;
+    private double memory = .0;
 
     public double getMemoryAndErase() {
         double temp = memory;
-        this.memory = Double.NaN;
+        this.memory = .0;
         return temp;
     }
+
+//    memorylong
+//    memoryShort
+//    void memory()
 
     public void setMemory(double memory) {
         this.memory = memory;
