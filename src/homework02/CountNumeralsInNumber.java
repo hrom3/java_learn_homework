@@ -17,4 +17,9 @@ public class CountNumeralsInNumber {
         }
         return length;
     }
+
+    public static int lengthOfNumber(int number) {
+        long temp = (long) number;
+        return lengthOfNumber(temp);
+    }
 }
