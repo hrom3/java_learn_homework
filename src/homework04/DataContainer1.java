@@ -2,6 +2,7 @@ package homework04;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class DataContainer1<T> {
 
@@ -18,13 +19,27 @@ public class DataContainer1<T> {
                 '}';
     }
 
-    private int addData(T item) {
-        int index = 0;
-
-        return index;
+    public int addData(T item) {
+        for (int i = 0; i < this.data.length; i++) {
+            if (this.data[i] == null) {
+                this.data[i] = item;
+                return i;
+            }
+        }
+        return -1;
     }
 
-
+    public void bubbleSorter(Comparator<T> comparator) {
+        for (int i = 0; i < this.data.length; i++) {
+            for (int j = this.data.length - 1; j > i; j--) {
+                if (comparator.compare(this.data[j],this.data[j - 1]) > 0) {
+                    T temp = this.data[j - 1];
+                    this.data[j - 1] = this.data[j];
+                    this.data[j] = temp;
+                }
+            }
+        }
+    }
 }
 
 
