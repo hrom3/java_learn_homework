@@ -210,7 +210,7 @@ public class StringsMy {
                 if (!isFirstNumber) {
                     return "двенадцать ";
                 } else {
-                    return "Ддвенадцать ";
+                    return "Двенадцать ";
                 }
             }
             case 13: {
@@ -440,7 +440,7 @@ public class StringsMy {
                 } else if (flag == -1) {
                     return "целая ";
                 } else if (flag == -2) {
-                    return "десятая ";
+                    return "сотая ";
                 } else if (flag == -3) {
                     return " неделя";
                 }
@@ -464,7 +464,7 @@ public class StringsMy {
                 } else if (flag == -1) {
                     return "целых ";
                 } else if (flag == -2) {
-                    return "десятых ";
+                    return "сотых ";
                 } else if (flag == -3) {
                     return " недель";
                 }
