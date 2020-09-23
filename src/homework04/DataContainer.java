@@ -1,5 +1,7 @@
 package homework04;
 
+import homework02.ArraysMy;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -8,9 +10,9 @@ public class DataContainer<T> {
 
     private T[] data;
 
-    public DataContainer() {
-        this.data = (T[]) Array.newInstance(getClass(), 1);
-    }
+//    public DataContainer() {
+//        this.data = (T[]) Array.newInstance(getClass(), 1);
+//    }
 
     public DataContainer(T[] data) {
         this.data = data;
@@ -19,8 +21,8 @@ public class DataContainer<T> {
     @Override
     public String toString() {
         return "DataContainer1{" +
-                "data=" + Arrays.toString(data) +
-                '}';
+                "data=" + ArraysMy.toString(data) + '}';
+
     }
 
     public int addData(T item) {
@@ -30,7 +32,7 @@ public class DataContainer<T> {
                 return i;
             }
         }
-        this.data = Arrays.copyOf(this.data,this.data.length + 1);
+        this.data = Arrays.copyOf(this.data, this.data.length + 1);
         this.data[this.data.length - 1] = item;
         return this.data.length - 1;
     }
@@ -42,10 +44,62 @@ public class DataContainer<T> {
         return data[index];
     }
 
-    public void bubbleSorter(Comparator<T> comparator) {
+    public T[] getItems() {
+        return data;
+    }
+
+    public boolean delete(int index) {
+        if (index < 0 || index >= this.data.length) {
+            return false;
+        }
+
+        int newArrayLength = this.data.length - 1;
+        if (newArrayLength > index) {
+            System.arraycopy(this.data, index + 1, this.data, index, newArrayLength - index);
+        }
+        this.data = Arrays.copyOf(this.data, newArrayLength);
+        return true;
+    }
+
+    public boolean delete(T item) {
+        int index = getIndex(item);
+        if (index < 0) {
+            return false;
+        }
+        delete(index);
+        return true;
+    }
+
+    private int getIndex(T item) {
+        if (item == null) {
+            for (int i = 0; i < this.data.length; i++) {
+                if (this.data[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < this.data.length; i++) {
+                if (item.equals(this.data[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+
+    public void sort(Comparator<T> comparator) {
         for (int i = 0; i < this.data.length; i++) {
             for (int j = this.data.length - 1; j > i; j--) {
-                if (comparator.compare(this.data[j],this.data[j - 1]) > 0) {
+                if (this.data[j] == null) {
+                    continue;
+                }
+                if (this.data[j - 1] == null) {
+                    this.data[j - 1] = this.data[j];
+                    this.data[j] = null;
+                    continue;
+                }
+                if (comparator.compare(this.data[j], this.data[j - 1]) < 0) {
                     T temp = this.data[j - 1];
                     this.data[j - 1] = this.data[j];
                     this.data[j] = temp;

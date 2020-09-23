@@ -160,4 +160,33 @@ public class ArraysMy {
         }
         return arr;
     }
+
+    public static String toString(Object[] a) {
+         if (a == null) {
+             return "null";
+         }
+         if (a.length == 0) {
+             return "[]";
+         }
+         StringBuilder b = new StringBuilder();
+         b.append('[');
+         boolean isNull = true;
+         for (int i = 0; ; i++) {
+             if (a[i] == null) {
+                 if (i == a.length-1) {
+                     return b.append(']').toString();
+                 }
+                 isNull = true;
+                 continue;
+             }
+             if (!isNull) {
+                 b.append(", ");
+             }
+             b.append(String.valueOf(a[i]));
+             if (i == a.length-1) {
+                 return b.append(']').toString();
+             }
+             isNull = false;
+         }
+}
 }
