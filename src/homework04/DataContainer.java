@@ -4,12 +4,16 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class DataContainer1<T> {
+public class DataContainer<T> {
 
     private T[] data;
 
-    DataContainer1() {
-        this.data = (T[]) Array.newInstance(getClass(), 10);
+    public DataContainer() {
+        this.data = (T[]) Array.newInstance(getClass(), 1);
+    }
+
+    public DataContainer(T[] data) {
+        this.data = data;
     }
 
     @Override
@@ -22,11 +26,20 @@ public class DataContainer1<T> {
     public int addData(T item) {
         for (int i = 0; i < this.data.length; i++) {
             if (this.data[i] == null) {
-                this.data[i] = item;
+                this.data[i] = (T) item;
                 return i;
             }
         }
-        return -1;
+        this.data = Arrays.copyOf(this.data,this.data.length + 1);
+        this.data[this.data.length - 1] = item;
+        return this.data.length - 1;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= this.data.length) {
+            return null;
+        }
+        return data[index];
     }
 
     public void bubbleSorter(Comparator<T> comparator) {
