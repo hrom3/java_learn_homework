@@ -96,6 +96,13 @@ public class StringsMy {
         return weeks + additionalWords(weeks, -3);
     }
 
+    public String toTimes(int number) {
+        if (number < 0) {
+            return "Bad date";
+        }
+        return additionalWords(number, -4);
+    }
+
     private String nullToNine(int number, boolean isFemaleGender,
                               boolean isFirstNumber) {
         switch (number) {
@@ -443,6 +450,8 @@ public class StringsMy {
                     return "сотая ";
                 } else if (flag == -3) {
                     return " неделя";
+                } else if (flag == -4) {
+                    return " раз";
                 }
             }
             case 2:
@@ -454,6 +463,8 @@ public class StringsMy {
                     return "миллиона ";
                 } else if (flag == -3) {
                     return " недели";
+                } else if (flag == -4) {
+                    return " раза";
                 }
             }
             default: {
@@ -467,6 +478,8 @@ public class StringsMy {
                     return "сотых ";
                 } else if (flag == -3) {
                     return " недель";
+                } else if (flag == -4) {
+                    return " раз";
                 }
             }
         }
