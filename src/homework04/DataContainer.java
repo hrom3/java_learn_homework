@@ -87,6 +87,38 @@ public class DataContainer<T> {
         return -1;
     }
 
+    private int getIndex(T item, int index) {
+        if (item == null) {
+            for (int i = index; i < this.data.length; i++) {
+                if (this.data[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = index; i < this.data.length; i++) {
+                if (item.equals(this.data[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public boolean deleteAllEntriesItems(T item) {
+        int startIndex = 0;
+        int index = getIndex(item, startIndex);
+
+        if (index < 0) {
+            return false;
+        }
+        while (index >= 0) {
+            delete(index);
+            startIndex = index;
+            index = getIndex(item, startIndex);
+        }
+
+        return true;
+    }
 
     public void sort(Comparator<T> comparator) {
         for (int i = 0; i < this.data.length; i++) {
