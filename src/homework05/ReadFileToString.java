@@ -13,7 +13,7 @@ public class ReadFileToString {
 
         // Task 1
         // Получение строки
-        String filePath = "d:\\repository\\java_learn\\HomeTasks\\Война и мир_книга.txt";
+        String filePath = "d:\\repository\\java_learn\\HomeTasks\\Война и мир_книга2.txt";
         String data = readAllBytes(filePath);
 
         // Получение массива слов из строки
@@ -54,6 +54,14 @@ public class ReadFileToString {
             long amount = search.search(data, toSearch);
             System.out.println("Count of word \"" + toSearch + "\" with case control in string = " + amount);
             amount = search.search(data1, toSearch);
+            System.out.println("Count of word \"" + toSearch + "\" without case control in string = " + amount);
+        }
+
+        RegExSearch regExSeargh = new RegExSearch();
+        for (String toSearch : wordToSearch) {
+            long amount = regExSeargh.search(data, toSearch);
+            System.out.println("Count of word \"" + toSearch + "\" with case control in string = " + amount);
+            amount = regExSeargh.search(data1, toSearch);
             System.out.println("Count of word \"" + toSearch + "\" without case control in string = " + amount);
         }
     }
@@ -114,8 +122,6 @@ public class ReadFileToString {
         }
         return data;
     }
-
-
 }
 
 
