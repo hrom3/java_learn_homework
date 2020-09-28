@@ -1,7 +1,7 @@
 package homework05;
 
 import homework04.DataContainer;
-import homework04.StringsMy;
+import homework04.StringsHomeTaskMy;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -13,11 +13,13 @@ public class ReadFileToString {
 
         // Task 1
         // Получение строки
-        String filePath = "d:\\repository\\java_learn\\HomeTasks\\Война и мир_книга2.txt";
+        String filePath =
+                "d:\\repository\\java_learn\\HomeTasks\\Война и мир_книга.txt";
         String data = readAllBytes(filePath);
 
         // Получение массива слов из строки
-        String[] arrayOfWords = data.split("\\s*(\\s|,|!|\\?|;|:|\\(|(\\)\\.*\\s*)|\\.+|\\*|(\\s*\"\\.*\\s*))\\s*");
+        String[] arrayOfWords = data.split("\\s*(\\s|,|!|\\?|;|:|\\(|" +
+                "(\\)\\.*\\s*)|\\.+|\\*|(\\s*\"\\.*\\s*))\\s*");
 
         // Удаление символов "--" из массива слов
         DataContainer<String> cont = new DataContainer<>(arrayOfWords);
@@ -57,11 +59,14 @@ public class ReadFileToString {
             System.out.println("Count of word \"" + toSearch + "\" without case control in string = " + amount);
         }
 
-        RegExSearch regExSeargh = new RegExSearch();
+        // Task 6
+        System.out.println();
+        System.out.println("Task 6");
+        RegExSearch regExSearch = new RegExSearch();
         for (String toSearch : wordToSearch) {
-            long amount = regExSeargh.search(data, toSearch);
+            long amount = regExSearch.search(data, toSearch);
             System.out.println("Count of word \"" + toSearch + "\" with case control in string = " + amount);
-            amount = regExSeargh.search(data1, toSearch);
+            amount = regExSearch.search(data1, toSearch);
             System.out.println("Count of word \"" + toSearch + "\" without case control in string = " + amount);
         }
     }
@@ -76,7 +81,7 @@ public class ReadFileToString {
                                                 int number) {
         Iterator<String> itr = map.keySet().iterator();
         int i = 0;
-        StringsMy worldTimes = new StringsMy();
+        StringsHomeTaskMy worldTimes = new StringsHomeTaskMy();
         while (i < number && itr.hasNext()) {
             String key = itr.next();
             Integer value = map.get(key);
@@ -94,7 +99,8 @@ public class ReadFileToString {
      * @param unSortedMap не сортированный Mqp
      * @return новый отсортированный Mqp
      */
-    private static Map<String, Integer> sortByCount(Map<String, Integer> unSortedMap) {
+    private static Map<String, Integer> sortByCount(Map<String,
+            Integer> unSortedMap) {
         List<Entry<String, Integer>> list = new LinkedList<>(unSortedMap.entrySet());
         MapComparator comparator = new MapComparator();
         list.sort(comparator);

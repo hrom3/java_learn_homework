@@ -51,7 +51,11 @@ public class EasySearch implements ISearchEngine {
     }
 
     private static boolean isIndexBeginWord(String str, int index) {
+        // только однословные союзы
         String[] beforeFirstLetter = {" ", "\"", "("};
+        // однословные союзы и сокращения
+//        String[] beforeFirstLetter = {".", " ", "\"", "("};
+
         for (String s : beforeFirstLetter) {
             if (str.startsWith(s, index)) {
                 return true;
@@ -61,7 +65,8 @@ public class EasySearch implements ISearchEngine {
     }
 
     private static boolean isIndexEndWord(String str, int index) {
-        String[] beforeFirstLetter = {" ", "\"", ")", ".", ",", "?", "!", ";", ":"};
+        String[] beforeFirstLetter = {" ", "\"", "\n", ")", ".", ",",
+                "?", "!", ";", ":"};
         for (String s : beforeFirstLetter) {
             if (str.startsWith(s, index)) {
                 return true;
