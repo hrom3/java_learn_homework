@@ -3,7 +3,7 @@ package homework04;
 public class StringsMyTest {
     public static void main(String[] args) {
         int number = -1;
-        StringsMy toString = new StringsMy();
+        StringsHomeTaskMy toString = new StringsHomeTaskMy();
         for (int i = 1; i < 999_999_999; i *= 2) {
 
             System.out.println(toString.toString(i));
@@ -35,6 +35,16 @@ public class StringsMyTest {
         System.out.println(toString.toWeek(5));
         System.out.println(toString.toWeek(14));
         System.out.println(toString.toWeek(177));
+
+        System.out.println();
+        System.out.println(toString.toHoursMinuteSecondMillisecond
+                (7789001, false));
+        System.out.println(toString.toHoursMinuteSecondMillisecond
+                (7789001, true));
+        System.out.println(toString.toHoursMinuteSecondMillisecond
+                (Long.MAX_VALUE, false));
+        System.out.println(toString.toHoursMinuteSecondMillisecond
+                (Long.MAX_VALUE, true));
 
     }
 }

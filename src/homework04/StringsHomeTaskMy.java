@@ -2,7 +2,8 @@ package homework04;
 
 import homework02.CountNumeralsInNumber;
 
-public class StringsMy {
+public class StringsHomeTaskMy {
+    final private CountNumeralsInNumber length = new CountNumeralsInNumber();
 
     public String toString(int number) {
         int lengthOfNumber;
@@ -15,7 +16,7 @@ public class StringsMy {
             isFirstNUmber = false;
         }
 
-        lengthOfNumber = CountNumeralsInNumber.lengthOfNumber(number);
+        lengthOfNumber = length.lengthOfNumber(number);
 
         switch (lengthOfNumber) {
             case 1:
@@ -56,7 +57,7 @@ public class StringsMy {
 
         numberInt = (int) number;
         fractionalPart = (int) ((number - numberInt) * 100);
-        lengthOfNumber = CountNumeralsInNumber.lengthOfNumber(numberInt);
+        lengthOfNumber = length.lengthOfNumber(numberInt);
 
         switch (lengthOfNumber) {
             case 1:
@@ -101,6 +102,28 @@ public class StringsMy {
             return "Bad date";
         }
         return additionalWords(number, -4);
+    }
+
+    public String toHoursMinuteSecondMillisecond(long millisecond,
+                                                 boolean shortFormat) {
+        if (millisecond < 0) {
+            return "Bad data";
+        }
+        long hours =  millisecond / 3_600_000;
+        int minutes = (int) (millisecond % 3_600_000 / 60_000);
+        int seconds = (int) (millisecond % 3_600_000 % 60_000 / 1_000);
+        int mseconds = (int) (millisecond % 3_600_000 % 60_000 % 1000);
+        int lastNumber =(int) (hours % 100);
+
+        if (shortFormat) {
+            return String.format("%02d:%02d:%02d.%03d", hours, minutes,
+                    seconds, mseconds);
+        } else {
+            return hours + " " + additionalWords(lastNumber, -5) +
+                    " " + minutes + " " +  additionalWords(minutes, -6) +
+                    " " + seconds + " " +  additionalWords(seconds, -7) +
+                    " " + mseconds + " милли" + additionalWords(mseconds, -7);
+        }
     }
 
     private String nullToNine(int number, boolean isFemaleGender,
@@ -452,6 +475,12 @@ public class StringsMy {
                     return " неделя";
                 } else if (flag == -4) {
                     return " раз";
+                } else if (flag == -5) {
+                    return "час";
+                } else if (flag == -6) {
+                    return "минута";
+                } else if (flag == -7) {
+                    return "секунда";
                 }
             }
             case 2:
@@ -465,6 +494,12 @@ public class StringsMy {
                     return " недели";
                 } else if (flag == -4) {
                     return " раза";
+                } else if (flag == -5) {
+                    return "часа";
+                } else if (flag == -6) {
+                    return "минуты";
+                } else if (flag == -7) {
+                    return "секунды";
                 }
             }
             default: {
@@ -480,6 +515,12 @@ public class StringsMy {
                     return " недель";
                 } else if (flag == -4) {
                     return " раз";
+                } else if (flag == -5) {
+                    return "часов";
+                } else if (flag == -6) {
+                    return "минут";
+                } else if (flag == -7) {
+                    return "секунд";
                 }
             }
         }
@@ -487,13 +528,13 @@ public class StringsMy {
     }
 
     private boolean isFemaleGender(int number) {
-        int lengthOfNumber = CountNumeralsInNumber.lengthOfNumber(number);
+        int lengthOfNumber = length.lengthOfNumber(number);
         return lengthOfNumber > 3 && lengthOfNumber < 7;
     }
 
     private String thousandToMillion(int number, boolean isFirstNumber,
                                      boolean isFemale) {
-        int lengthOfNumber = CountNumeralsInNumber.lengthOfNumber(number);
+        int lengthOfNumber = length.lengthOfNumber(number);
         int number1 = number / 1_000;
         int number2 = number % 1_000;
         String nullToNinetyNine;
@@ -512,7 +553,7 @@ public class StringsMy {
 
     private String millionToBillion(int number, boolean isFirstNumber,
                                     boolean isFemale) {
-        int lengthOfNumber = CountNumeralsInNumber.lengthOfNumber(number);
+        int lengthOfNumber = length.lengthOfNumber(number);
         int number1 = number / 1_000_000;
         int number2 = number % 1_000_000;
 
