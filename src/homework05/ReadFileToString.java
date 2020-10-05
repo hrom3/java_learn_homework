@@ -119,7 +119,7 @@ public class ReadFileToString {
      * @param filePath Строка с путем к фалу для преобразования
      * @return Возвращаемая строка
      */
-    private static String readAllBytes(String filePath) {
+    public static String readAllBytes(String filePath) {
         String data = "";
         try {
             data = new String(Files.readAllBytes(Paths.get(filePath)));
