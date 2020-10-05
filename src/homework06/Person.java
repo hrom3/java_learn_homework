@@ -33,13 +33,20 @@ public class Person implements Comparable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Person person = (Person) o;
 
-        if (nick != null ? !nick.equals(person.nick) : person.nick != null) return false;
-        return password != null ? password.equals(person.password) : person.password == null;
+        if (nick != null ? !nick.equals(person.nick) : person.nick != null) {
+            return false;
+        }
+        return password != null ? password.equals(person.password)
+                : person.password == null;
     }
 
     @Override
@@ -51,8 +58,8 @@ public class Person implements Comparable {
 
     @Override
     public String toString() {
-        return "Имя: " + nick + '\t' +
-                ", password: " + password + ".";
+        return "Имя: " + nick +
+                ", \t password: " + password + ".";
     }
 
     @Override

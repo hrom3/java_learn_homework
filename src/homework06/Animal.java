@@ -12,7 +12,7 @@ public class Animal implements Comparable {
     }
 
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     public boolean setAge(int age) {
@@ -24,7 +24,7 @@ public class Animal implements Comparable {
     }
 
     public String getNick() {
-        return nick;
+        return this.nick;
     }
 
     public void setNick(String nick) {
@@ -34,18 +34,22 @@ public class Animal implements Comparable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Animal animal = (Animal) o;
 
-        if (age != animal.age) return false;
-        return nick != null ? nick.equals(animal.nick) : animal.nick == null;
+        if (age != animal.age) {
+            return false;
+        }
+        return this.nick != null ? this.nick.equals(animal.nick) : animal.nick == null;
     }
 
     @Override
     public int hashCode() {
         int result = age;
-        result = 31 * result + (nick != null ? nick.hashCode() : 0);
+        result = 31 * result + (this.nick != null ? this.nick.hashCode() : 0);
         return result;
     }
 
