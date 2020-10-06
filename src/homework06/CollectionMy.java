@@ -11,11 +11,13 @@ public class CollectionMy {
         Comparator<Animal> comparatorAnimal = new AnimalAgeComparator();
         Comparator<Person> comparatorPersonAllFields = new PasswordLengthAndNickComparator();
         Comparator<Person> comparatorPerson = new PasswordLengthComparator();
+
         CollectionWork arrList = new CollectionWork();
         LinkedList<Animal> animalLinkedList = new LinkedList<>();
         ArrayList<Animal> animalArrayList = new ArrayList<>();
         HashSet<Animal> animalHashSet = new HashSet<>();
         TreeSet<Animal> animalTreeSet = new TreeSet<>();
+
         LinkedList<Person> personLinkedList = new LinkedList<>();
         ArrayList<Person> personArrayList = new ArrayList<>();
         HashSet<Person> personHashSet = new HashSet<>();
@@ -23,51 +25,61 @@ public class CollectionMy {
 
         long startTimeOfFilling = System.currentTimeMillis();
 
-        arrList.toAnimalRandomLinkedList(animalLinkedList, 1_000_000);
+        arrList.toAnimalRandomLinkedList(animalLinkedList, 1_000_00);
 
         long endTimeOfFilling = System.currentTimeMillis();
 
-        arrList.toAnimalRandomArrayList(animalArrayList, 1_000_000);
+
+        arrList.toAnimalRandomArrayList(animalArrayList, 1_000_00);
         arrList.toAnimalRandomHashSet(animalHashSet, 1_000_000);
         arrList.toAnimalRandomTreeSet(animalTreeSet, 1_000_000);
         arrList.toPersonRandomLinkedList(personLinkedList, 1_000_000);
         arrList.toPersonRandomArrayList(personArrayList, 1_000_000);
         arrList.toPersonRandomHashSet(personHashSet, 1_000_000);
         arrList.toPersonRandomTreeSet(personTreeSet, 1_000_000);
+        LinkedList<Animal> animalLinkedList1 = new LinkedList<>(animalArrayList);
 
         long startTimeOfSorting = System.currentTimeMillis();
 
-        animalLinkedList.sort(comparatorAnimal);
+        animalLinkedList.sort(comparatorAnimalAllFields);
 
         long endTimeOfSorting = System.currentTimeMillis();
 
-        animalLinkedList.sort(comparatorAnimalAllFields);
-        animalArrayList.sort(comparatorAnimal);
-        animalArrayList.sort(comparatorAnimalAllFields);
-        animalTreeSet = new TreeSet<>(comparatorAnimal);
-        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
-        animalTreeSet = new TreeSet<>(comparatorAnimal);
-        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
+        long startTimeOfSortingMy = System.currentTimeMillis();
 
-        personLinkedList.sort(comparatorPerson);
-        personLinkedList.sort(comparatorPersonAllFields);
-        personArrayList.sort(comparatorPerson);
-        personArrayList.sort(comparatorPersonAllFields);
-        personTreeSet = new TreeSet<>(comparatorPerson);
-        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
-        personTreeSet = new TreeSet<>(comparatorPerson);
-        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
+        sortAnimal(comparatorAnimalAllFields, animalLinkedList1);
+
+        long endTimeOfSortingMy = System.currentTimeMillis();
+
+//        animalLinkedList.sort(comparatorAnimalAllFields);
+//        animalArrayList.sort(comparatorAnimal);
+//        animalArrayList.sort(comparatorAnimalAllFields);
+//        animalTreeSet = new TreeSet<>(comparatorAnimal);
+//        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
+//        animalTreeSet = new TreeSet<>(comparatorAnimal);
+//        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
+//
+//        personLinkedList.sort(comparatorPerson);
+//        personLinkedList.sort(comparatorPersonAllFields);
+//        personArrayList.sort(comparatorPerson);
+//        personArrayList.sort(comparatorPersonAllFields);
+//        personTreeSet = new TreeSet<>(comparatorPerson);
+//        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
+//        personTreeSet = new TreeSet<>(comparatorPerson);
+//        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
 
         long startTimeOfIterating = System.currentTimeMillis();
 
         for (Animal animal : animalLinkedList) {
             System.out.println(animal);
         }
-//
-//        Iterator<Animal> iterator1 = animalArrayList.iterator();
-//        while (iterator1.hasNext()) {
-//            System.out.println(iterator1.next());
-//        }
+
+        System.out.println("/____________/");
+
+        Iterator<Animal> iterator1 = animalLinkedList.iterator();
+        while (iterator1.hasNext()) {
+            System.out.println(iterator1.next());
+        }
 
         System.out.println("/____________/");
 
@@ -100,8 +112,10 @@ public class CollectionMy {
         System.out.println("/____________/");
         System.out.println("Операция: Заполнение коллекции. " +
                 "Заняла: " + (endTimeOfFilling - startTimeOfFilling) + " мс");
-        System.out.println("Операция: Сортировка коллекции. " +
+        System.out.println("Операция: Сортировка коллекции средствами jdk. " +
                 "Заняла: " + (endTimeOfSorting - startTimeOfSorting) + " мс");
+        System.out.println("Операция: Сортировка коллекции моим методом. " +
+                "Заняла: " + (endTimeOfSortingMy - startTimeOfSortingMy) + " мс");
         System.out.println("Операция: Итерирование коллекции при помощи iterator. " +
                 "Заняла: " + (endTimeOfIterating - startTimeOfIterating) + " мс");
         System.out.println("Операция: Итерирование коллекции при помощи for. " +
@@ -116,43 +130,72 @@ public class CollectionMy {
 
     }
 
-//    public static <V> void sort(List list, Comparator<Animal> comparator){
-//        V tmp;
-//        for (int i = 0; i < container.data.length - 1; i++) {
-//            for (int j = 0; j < container.data.length - 1; j++) {
-//                if (comparator.compare(container.data[j], container.data[j + 1]) > 0) {
-//                    tmp = container.data[j];
-//                    container.data[j] = container.data[j + 1];
-//                    container.data[j + 1] = tmp;
+    private static void sortAnimal(Comparator comparator, Collection<Animal> list) {
+        if (list == null) {
+            return;
+        }
+        Animal[] array = list.toArray(new Animal[list.size()]);
+        Animal tmp;
+//
+//        for (int i = 0; i < array.length; i++) {
+//            for (int j = array.length - 1; j > i; j--) {
+//                if (comparator.compare(array[j], array[j - 1]) < 0) {
+//                    tmp = array[j];
+//                    array[j] = array[j + 1];
+//                    array[j + 1] = tmp;
 //                }
 //            }
 //        }
-//    }
-//
-//    public void sort(Comparator comparator){
-//        T tmp;
-//        for (int i = 0; i < this.data.length - 1; i++) {
-//            for (int j = 0; j < this.data.length - 1; j++) {
-//                if (comparator.compare(this.data[j], this.data[j + 1]) > 0) {
-//                    tmp = this.data[j];
-//                    this.data[j] = this.data[j + 1];
-//                    this.data[j + 1] = tmp;
-//                }
-//            }
-//        }
-//    }
-//
-//    public static <V extends Comparable> void sort(DataContainer<V> container){
-//        V tmp;
-//        for (int i = 0; i < container.data.length - 1; i++) {
-//            for (int j = 0; j < container.data.length - 1; j++) {
-//                if (container.data[j].compareTo(container.data[j + 1]) > 0) {
-//                    tmp = container.data[j];
-//                    container.data[j] = container.data[j + 1];
-//                    container.data[j + 1] = tmp;
-//                }
-//            }
-//        }
-//
-//    }
+
+        boolean isSort = false;
+        int i = 0;
+
+        while (!isSort) {
+            isSort = true;
+            for (int j = 0; j < (array.length - 1) - i; j++) {
+                if (comparator.compare(array[j], array[j + 1]) > 0) {
+                    tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
+                    isSort = false;
+                }
+            }
+            i++;
+        }
+
+        ListIterator iterator = (ListIterator) list.iterator();
+        for (Animal e : array) {
+            iterator.next();
+            iterator.set(e);
+        }
+    }
+
+    private static void sortPerson(Comparator comparator, Collection<Person> list) {
+        if (list == null) {
+            return;
+        }
+        Person[] array = list.toArray(new Person[list.size()]);
+        Person tmp;
+        boolean isSort = false;
+        int i = 0;
+
+        while (!isSort) {
+            isSort = true;
+            for (int j = 0; j < (array.length - 1) - i; j++) {
+                if (comparator.compare(array[j], array[j + 1]) > 0) {
+                    tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
+                    isSort = false;
+                }
+            }
+            i++;
+        }
+
+        ListIterator iterator = (ListIterator) list.iterator();
+        for (Person e : array) {
+            iterator.next();
+            iterator.set(e);
+        }
+    }
 }
