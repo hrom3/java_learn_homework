@@ -1,9 +1,28 @@
 package homework03;
 
-//Task 8
+/*
+ *  Task 8*. Создать класс CalculatorWithCounter, все методы в данном классе
+ * НЕ статические. У данного класса должно быть три конструктора (или один
+ * если сможете, это ещё не изучено
+ * https://refactoring.guru/ru/design-patterns/decorator) один принимающий
+ * в себя CalculatorWithOperator, второй CalculatorWithMathCopy, третий
+ * CalculatorWithMathExtends. Данные конструкторы должны сохранять переданные
+ * калькуляторы в приватные поля класса для дальнейшего их использования. Он
+ * также имеет 7 методов как и другие калькуляторы + 1 метод getCountOperation()
+ * который должен вернуть значение внутреннего счётчика.
+ *  В реализации методов должен быть вызван один из объектов переданный в
+ * констуктор при создании объекта CalculatorWithCounter, и вызвать
+ * соответсвующий метод у них. К примеру. Если вызывают метод plus у
+ * CalculatorWithCounter то он должен вызвать метод plus у объекта
+ * CalculatorWithOperator или у объекта CalculatorWithMathCopy или у объекта
+ * CalculatorWithMathExtends (смотря что передали в конструктор) и увеличить
+ * значение внутреннего счётчика операций.
+ */
+
 public class CalculatorWithCounter implements ICalculator {
-    private int countOperation = 0;
     private final ICalculator calcType;
+    private int countOperation = 0;
+
 
     public CalculatorWithCounter(int calcType) {
         this.calcType = getCalculator(calcType);
