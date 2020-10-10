@@ -22,8 +22,8 @@ public class Task6Ver3 {
         if (number == null) {
             return "No data";
         }
-        if (number.length != 14) {
-            return "Bad array number";
+        if (number.length != 10) {
+            return "Bad array";
         }
         return String.format("(%d%d%d) %d%d%d-%d%d%d%d", number);
     }
