@@ -3,6 +3,14 @@ package homework02;
 import java.util.Scanner;
 
 public class Task1Sub3 {
+
+    /*
+     * 1.3. Возведение в степень. Через консоль пользователь вводит два числа.
+     * Первое число это число которое мы будем возводить, Второе число это
+     * степень в которую возводят первое число. Степень - только положительная
+     * и целая. Возводимое число - может быть отрицательным и дробным.
+     */
+
     public static void main(String[] args) {
         double number;
         double result = 1;
@@ -31,7 +39,7 @@ public class Task1Sub3 {
     /**
      * Метод получения числа из консоли
      *
-     * @return возвращаемое значение
+     * @return возвращаемое значение типа double
      */
     static double setNumber() {
         double countOfNumber = 0;
@@ -63,9 +71,8 @@ public class Task1Sub3 {
 
     /**
      * Метод получения из консоли значения степени
-     * (целое число)
      *
-     * @return значение степени
+     * @return значение степени (целое число)
      */
     static int setPowNumber() {
         int degree = 0;

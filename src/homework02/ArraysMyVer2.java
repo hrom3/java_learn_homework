@@ -2,7 +2,7 @@ package homework02;
 
 import java.util.Scanner;
 
-public class ArraysMy {
+public class ArraysMyVer2 {
 
     /**
      * Метод запрашивает у пользователя число для получения длинны массива
@@ -11,7 +11,7 @@ public class ArraysMy {
      *
      * @return целое число
      */
-    private static int getArrayLength() {
+    public static int getArrayLength() {
         int arrayLength = 0;
         int maxArrayLength = 20;
 
@@ -22,7 +22,7 @@ public class ArraysMy {
                 Scanner scanNumber = new Scanner(System.in);
                 userNumber = scanNumber.nextInt();
             } catch (NumberFormatException e) {
-                System.out.println("Bad format" + e + '\n');
+                System.out.println("Bad format" + '\n');
                 continue;
             }
             if (userNumber < 1 || userNumber > maxArrayLength) {
@@ -41,14 +41,13 @@ public class ArraysMy {
      *
      * @return массив целочисленных начений
      */
-    public static int[] getNumbersForArray() {   // ввод чисел пользователем
+    public static int[] getNumbersForArray(int arrayLength) {   // ввод чисел пользователем
         int[] arrOfNumbers;
-        int countOfArray = getArrayLength();
-        if (countOfArray > 0) {
-            arrOfNumbers = new int[countOfArray];
+        if (arrayLength > 0) {
+            arrOfNumbers = new int[arrayLength];
             int userNumber;
-            System.out.println("Type " + countOfArray + " numbers and press ENTER after each numeral");
-            for (int i = 0; i < countOfArray; ) {
+            System.out.println("Type " + arrayLength + " numbers and press ENTER after each numeral");
+            for (int i = 0; i < arrayLength; ) {
                 try {
                     Scanner scan = new Scanner(System.in);
                     String userNumberString = scan.next();
@@ -83,7 +82,7 @@ public class ArraysMy {
         int arrLength;
         int[] arr;
 
-        arrLength = getArrLength(minArrayLength, maxArrayLength);
+        arrLength = getRandomArrLength(minArrayLength, maxArrayLength);
         if (arrLength < 1) {
             System.out.println("Bad array length");
             return new int[0];
@@ -102,7 +101,7 @@ public class ArraysMy {
      * @param max максимальное значение диапазона
      * @return возвращаемое значение
      */
-    int getArrLength(int min, int max) {
+    public int getRandomArrLength(int min, int max) {
         int length;
         int temp;
 

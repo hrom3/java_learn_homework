@@ -1,6 +1,13 @@
 package homework02;
 
 public class Task1Sub5 {
+
+    /*
+    * Вывести таблицу умножения в консоль. В консоли должно получиться
+    * также как и на картинке (динозаврика рисовать не надо):
+    * https://www.dropbox.com/s/ibakfuppvy2w32g/multiplication_table.jpeg?dl=0
+    */
+
     public static void main(String[] args) {
         int startNumber = 2;
         int endNumber = 9;
