@@ -109,19 +109,19 @@ public class StringsHomeTaskMy {
         if (millisecond < 0) {
             return "Bad data";
         }
-        long hours =  millisecond / 3_600_000;
+        long hours = millisecond / 3_600_000;
         int minutes = (int) (millisecond % 3_600_000 / 60_000);
         int seconds = (int) (millisecond % 3_600_000 % 60_000 / 1_000);
         int mseconds = (int) (millisecond % 3_600_000 % 60_000 % 1000);
-        int lastNumber =(int) (hours % 100);
+        int lastNumber = (int) (hours % 100);
 
         if (shortFormat) {
             return String.format("%02d:%02d:%02d.%03d", hours, minutes,
                     seconds, mseconds);
         } else {
             return hours + " " + additionalWords(lastNumber, -5) +
-                    " " + minutes + " " +  additionalWords(minutes, -6) +
-                    " " + seconds + " " +  additionalWords(seconds, -7) +
+                    " " + minutes + " " + additionalWords(minutes, -6) +
+                    " " + seconds + " " + additionalWords(seconds, -7) +
                     " " + mseconds + " милли" + additionalWords(mseconds, -7);
         }
     }
@@ -129,14 +129,13 @@ public class StringsHomeTaskMy {
     private String nullToNine(int number, boolean isFemaleGender,
                               boolean isFirstNumber) {
         switch (number) {
-            case 0: {
+            case 0:
                 if (!isFirstNumber) {
                     return "ноль ";
                 } else {
                     return "Ноль ";
                 }
-            }
-            case 1: {
+            case 1:
                 if (!isFirstNumber) {
                     if (!isFemaleGender) {
                         return "один ";
@@ -150,8 +149,7 @@ public class StringsHomeTaskMy {
                         return "Одна ";
                     }
                 }
-            }
-            case 2: {
+            case 2:
                 if (!isFirstNumber) {
                     if (!isFemaleGender) {
                         return "два ";
@@ -165,56 +163,48 @@ public class StringsHomeTaskMy {
                         return "Две ";
                     }
                 }
-            }
-            case 3: {
+            case 3:
                 if (!isFirstNumber) {
                     return "три ";
                 } else {
                     return "Три ";
                 }
-            }
-            case 4: {
+            case 4:
                 if (!isFirstNumber) {
                     return "четыре ";
                 } else {
                     return "Четыре ";
                 }
-            }
-            case 5: {
+            case 5:
                 if (!isFirstNumber) {
                     return "пять ";
                 } else {
                     return "Пять ";
                 }
-            }
-            case 6: {
+            case 6:
                 if (!isFirstNumber) {
                     return "шесть ";
                 } else {
                     return "Шесть ";
                 }
-            }
-            case 7: {
+            case 7:
                 if (!isFirstNumber) {
                     return "семь ";
                 } else {
                     return "Семь ";
                 }
-            }
-            case 8: {
+            case 8:
                 if (!isFirstNumber) {
                     return "восемь ";
                 } else {
                     return "Восемь ";
                 }
-            }
-            case 9: {
+            case 9:
                 if (!isFirstNumber) {
                     return "девять ";
                 } else {
                     return "Девять ";
                 }
-            }
             default:
                 return "bad";
         }
@@ -544,7 +534,7 @@ public class StringsHomeTaskMy {
             nullToNinetyNine = nullToNineHundredNinetyNine(number2,
                     isFemale, false);
         } else nullToNinetyNine = nullToNineHundredNinetyNine(number2,
-                isFemaleGender(number2),false);
+                isFemaleGender(number2), false);
 
         return nullToNineHundredNinetyNine(number1, isFemaleGender(number),
                 isFirstNumber) + additionalWords(number1, lengthOfNumber)
