@@ -1,8 +1,11 @@
 package homework06.dto;
 
+import homework06.IComparator;
 import org.jetbrains.annotations.NotNull;
 
-public class Animal implements Comparable {
+import java.util.Comparator;
+
+public class Animal implements Comparable, IComparator {
     private int age;
     private String nick;
 
@@ -61,7 +64,21 @@ public class Animal implements Comparable {
 
     @Override
     public int compareTo(@NotNull Object o) {
-        Animal entry = (Animal) o;
-        return this.nick.compareTo(entry.nick);
+        return compareByAllFields(o);
     }
+
+    public int compareByAllFields(@NotNull Object o) {
+        int result = this.compareByOneField(o);
+        if (result != 0) {
+            return result;
+        }
+        Animal entry = (Animal) o;
+        return this.getNick().compareTo(entry.getNick());
+    }
+
+    public int compareByOneField(@NotNull Object o) {
+        Animal entry = (Animal) o;
+        return this.age - entry.age;
+    }
+
 }
