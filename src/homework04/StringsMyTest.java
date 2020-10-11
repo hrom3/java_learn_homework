@@ -3,7 +3,7 @@ package homework04;
 public class StringsMyTest {
     public static void main(String[] args) {
         int number = -1;
-        StringsHomeTaskMyVer2 toString = new StringsHomeTaskMyVer2();
+        StringsHomeTaskMyVer3 toString = new StringsHomeTaskMyVer3();
         for (int i = 1; i < 999_999_999; i *= 2) {
 
             System.out.println(toString.toString(i));
