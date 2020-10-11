@@ -1,4 +1,4 @@
-package homework06;
+package homework06.dto;
 
 import org.jetbrains.annotations.NotNull;
 

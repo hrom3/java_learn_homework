@@ -1,5 +1,8 @@
 package homework06;
 
+import homework06.dto.Animal;
+import homework06.dto.Person;
+
 import java.util.*;
 
 public class CollectionMy {
@@ -25,12 +28,12 @@ public class CollectionMy {
 
         long startTimeOfFilling = System.currentTimeMillis();
 
-        arrList.toAnimalRandomLinkedList(animalLinkedList, 1_000_00);
+        arrList.toAnimalRandomLinkedList(animalLinkedList, 1_000_000);
 
         long endTimeOfFilling = System.currentTimeMillis();
 
 
-        arrList.toAnimalRandomArrayList(animalArrayList, 1_000_00);
+        arrList.toAnimalRandomArrayList(animalArrayList, 1_000_000);
         arrList.toAnimalRandomHashSet(animalHashSet, 1_000_000);
         arrList.toAnimalRandomTreeSet(animalTreeSet, 1_000_000);
         arrList.toPersonRandomLinkedList(personLinkedList, 1_000_000);
@@ -47,26 +50,26 @@ public class CollectionMy {
 
         long startTimeOfSortingMy = System.currentTimeMillis();
 
-        sortAnimal(comparatorAnimalAllFields, animalLinkedList1);
+//        sortAnimal(comparatorAnimalAllFields, animalLinkedList1);
 
         long endTimeOfSortingMy = System.currentTimeMillis();
 
-//        animalLinkedList.sort(comparatorAnimalAllFields);
-//        animalArrayList.sort(comparatorAnimal);
-//        animalArrayList.sort(comparatorAnimalAllFields);
-//        animalTreeSet = new TreeSet<>(comparatorAnimal);
-//        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
-//        animalTreeSet = new TreeSet<>(comparatorAnimal);
-//        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
-//
-//        personLinkedList.sort(comparatorPerson);
-//        personLinkedList.sort(comparatorPersonAllFields);
-//        personArrayList.sort(comparatorPerson);
-//        personArrayList.sort(comparatorPersonAllFields);
-//        personTreeSet = new TreeSet<>(comparatorPerson);
-//        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
-//        personTreeSet = new TreeSet<>(comparatorPerson);
-//        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
+        animalLinkedList.sort(comparatorAnimalAllFields);
+        animalArrayList.sort(comparatorAnimal);
+        animalArrayList.sort(comparatorAnimalAllFields);
+        animalTreeSet = new TreeSet<>(comparatorAnimal);
+        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
+        animalTreeSet = new TreeSet<>(comparatorAnimal);
+        animalTreeSet = new TreeSet<>(comparatorAnimalAllFields);
+
+        personLinkedList.sort(comparatorPerson);
+        personLinkedList.sort(comparatorPersonAllFields);
+        personArrayList.sort(comparatorPerson);
+        personArrayList.sort(comparatorPersonAllFields);
+        personTreeSet = new TreeSet<>(comparatorPerson);
+        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
+        personTreeSet = new TreeSet<>(comparatorPerson);
+        personTreeSet = new TreeSet<>(comparatorPersonAllFields);
 
         long startTimeOfIterating = System.currentTimeMillis();
 
@@ -136,16 +139,6 @@ public class CollectionMy {
         }
         Animal[] array = list.toArray(new Animal[list.size()]);
         Animal tmp;
-//
-//        for (int i = 0; i < array.length; i++) {
-//            for (int j = array.length - 1; j > i; j--) {
-//                if (comparator.compare(array[j], array[j - 1]) < 0) {
-//                    tmp = array[j];
-//                    array[j] = array[j + 1];
-//                    array[j + 1] = tmp;
-//                }
-//            }
-//        }
 
         boolean isSort = false;
         int i = 0;

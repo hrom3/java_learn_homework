@@ -1,5 +1,7 @@
 package homework06;
 
+import homework06.dto.Animal;
+
 import java.util.Comparator;
 
 public class AnimalAgeComparator implements Comparator<Animal> {

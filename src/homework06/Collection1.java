@@ -1,5 +1,8 @@
 package homework06;
 
+import homework06.dto.Animal;
+import homework06.dto.Person;
+
 import java.util.*;
 
 public class Collection1 {

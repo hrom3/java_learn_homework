@@ -1,5 +1,7 @@
 package homework06;
 
+import homework06.dto.Person;
+
 import java.util.Comparator;
 
 public class PasswordLengthAndNickComparator implements Comparator<Person> {
