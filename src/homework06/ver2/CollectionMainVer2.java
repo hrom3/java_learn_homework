@@ -12,8 +12,8 @@ public class CollectionMainVer2 {
 
         MethodRunningTime timeAll = new MethodRunningTime();
         CollectionWorkVer2 genCollection = new CollectionWorkVer2();
-//        int collectionSize = 1_000_000;
-        int collectionSize = 100_000;
+        int collectionSize = 1_000_000;
+//        int collectionSize = 100_000;
 
         // Создание коллекций
 
@@ -133,28 +133,28 @@ public class CollectionMainVer2 {
         listOfTimes.add(timeSort1.toString("Заполнение коллекции TreeSet c " +
                 "сортировкой LowComparator"));
 
-        // Сортировка коллекций пузырьком
-        listOfTimes.add("Сортировка коллекций Animal методом " +
-                "пузырьковой сортировки");
-
-        timeSort1.setStartTime();
-        SortMy.sort(animalArrayList, new BigComparator<Animal>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
-
-        timeSort1.setStartTime();
-        SortMy.sort(animalLinkedList, new BigComparator<Animal>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
-
-        listOfTimes.add("Сортировка коллекций Person методом " +
-                "пузырьковой сортировки");
-
-        timeSort1.setStartTime();
-        SortMy.sort(personLinkedList, new BigComparator<Animal>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
-
-        timeSort1.setStartTime();
-        SortMy.sort(personArrayList, new BigComparator<Animal>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
+//        // Сортировка коллекций пузырьком
+//        listOfTimes.add("Сортировка коллекций Animal методом " +
+//                "пузырьковой сортировки");
+//
+//        timeSort1.setStartTime();
+//        SortMy.sort(animalArrayList, new BigComparator<Animal>());
+//        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
+//
+//        timeSort1.setStartTime();
+//        SortMy.sort(animalLinkedList, new BigComparator<Animal>());
+//        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
+//
+//        listOfTimes.add("Сортировка коллекций Person методом " +
+//                "пузырьковой сортировки");
+//
+//        timeSort1.setStartTime();
+//        SortMy.sort(personLinkedList, new BigComparator<Animal>());
+//        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
+//
+//        timeSort1.setStartTime();
+//        SortMy.sort(personArrayList, new BigComparator<Animal>());
+//        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
 
         listOfTimes.add("");
 
