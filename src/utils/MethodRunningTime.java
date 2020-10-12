@@ -29,4 +29,10 @@ public class MethodRunningTime {
         System.out.println("Операция: " + operation +
                 ". Заняла: " + (endTime - this.startTime) + " мс");
     }
+
+    public String toString(String operation) {
+        endTime = System.currentTimeMillis();
+        return "Операция: " + operation + ". Заняла: " +
+                (endTime - this.startTime) + " мс";
+    }
 }

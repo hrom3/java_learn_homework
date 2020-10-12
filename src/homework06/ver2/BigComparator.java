@@ -1,7 +1,4 @@
-package homework06;
-
-import homework06.dto.Animal;
-import homework06.dto.Person;
+package homework06.ver2;
 
 import java.util.Comparator;
 

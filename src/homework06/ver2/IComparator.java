@@ -1,8 +1,4 @@
-package homework06;
-
-import homework06.dto.Animal;
-
-import java.util.Comparator;
+package homework06.ver2;
 
 public interface IComparator<T> {
     int compareByOneField(T o);

@@ -1,6 +1,6 @@
 package homework06.dto;
 
-import homework06.IComparator;
+import homework06.ver2.IComparator;
 import org.jetbrains.annotations.NotNull;
 
 public class Person implements Comparable, IComparator {

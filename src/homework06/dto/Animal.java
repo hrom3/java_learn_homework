@@ -1,9 +1,7 @@
 package homework06.dto;
 
-import homework06.IComparator;
+import homework06.ver2.IComparator;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Comparator;
 
 public class Animal implements Comparable, IComparator {
     private int age;
