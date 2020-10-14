@@ -1,14 +1,15 @@
 package homework05;
 
 import homework04.DataContainer;
-import homework04.StringsHomeTaskMy;
+import homework04.StringsHomeTaskMyVer3;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.Map.Entry;
+
+import static homework05.ReadFileToString.printNumberOfValuesOfMap;
 
 /*
  * Работа со строками, коллекциями. Война и мир:
@@ -39,68 +40,127 @@ import java.util.Map.Entry;
  * встречаются слова "война", "и" (как союз), "мир" вне зависимости от регистра.
  */
 
-public class ReadFileToString {
-    public static void main(String[] args) {
+public class TextData {
 
-        // Task 1
-        // Получение строки
-        String filePath = "homework" + File.separator + "src" +
-                File.separator + "res" + File.separator +
-                "Война и мир_книга.txt";
-        String data = readAllBytes(filePath);
+
+    public static String[] getWordsFromString(String str) {
 
         // Получение массива слов из строки
-        String[] arrayOfWords = data.split("\\s*(\\s|,|!|\\?|;|:|\\(|" +
+        if (str == null || str.length() == 0) {
+            return null;
+        }
+        String[] arrayOfWords = str.split("\\s*(\\s|,|!|\\?|;|:|\\(|" +
                 "(\\)\\.*\\s*)|\\.+|\\*|(\\s*\"\\.*\\s*))\\s*");
 
         // Удаление символов "--" из массива слов
         DataContainer<String> cont = new DataContainer<>(arrayOfWords);
         cont.deleteAllEntriesItems("--");
-        List<String> listOfWords = Arrays.asList(cont.getItems());
+        return cont.getItems();
+    }
 
-        System.out.println("Count of words in string = " + listOfWords.size());
+    // Task 2.1
+    public static Set<String> getSetFromArr(String[] strArr) {
+        TreeSet<String> setOfWords = null;
+        if (strArr == null || strArr.length == 0) {
+            return setOfWords;
+        }
+        List<String> collection = Arrays.asList(strArr);
+        setOfWords = new TreeSet<>(collection);
 
-        // Task 2
+        System.out.println();
+        System.out.println("Task 3");
+        System.out.println("Count of words in string = " + setOfWords.size());
+
+        return setOfWords;
+    }
+
+    // Task 2.2
+    public static void printMapFromArr(String[] strArr, int numberOfTopWordsToPrint) {
         Map<String, Integer> countOfWords = new HashMap<>();
+        if (strArr == null || strArr.length == 0) {
+            System.out.println("Bad array");
+        }
+        List<String> collection = Arrays.asList(strArr);
 
-        for (String s : listOfWords) {
-            Integer count = Collections.frequency(listOfWords, s);
+        for (String s : collection) {
+            Integer count = Collections.frequency(collection, s);
             countOfWords.put(s, count);
         }
 
-        Map<String, Integer> sortedMap = sortByCount(countOfWords);
+        sortByCountVer2(countOfWords);
 
         System.out.println();
         System.out.println("Task 3");
 
-        printNumberOfValuesOfMap(sortedMap, 10);
+        printNumberOfValuesOfMap(countOfWords, numberOfTopWordsToPrint);
+    }
 
-        // Task 7
+
+    // Task 5.2
+    public static void printFoundByRegExSearchWordsAndCount(String str,
+                                                            String[] wordsToSearch){
         System.out.println();
-        System.out.println("Task 7");
-
-        String data1 = data.toLowerCase();
-        String[] wordToSearch = {"война", "и", "мир"};
-        EasySearch search = new EasySearch();
-
-        for (String toSearch : wordToSearch) {
-            long amount = search.search(data, toSearch);
-            System.out.println("Count of word \"" + toSearch + "\" with case control in string = " + amount);
-            amount = search.search(data1, toSearch);
-            System.out.println("Count of word \"" + toSearch + "\" without case control in string = " + amount);
+        System.out.println("Task 5.2");
+        if (str == null || str.length() == 0) {
+            System.out.println("bad string");
+            return;
+        }
+        if (wordsToSearch == null || wordsToSearch.length == 0) {
+            System.out.println("bad string array");
+            return;
         }
 
-        // Task 6
-        System.out.println();
-        System.out.println("Task 6");
-        RegExSearch regExSearch = new RegExSearch();
-        for (String toSearch : wordToSearch) {
-            long amount = regExSearch.search(data, toSearch);
-            System.out.println("Count of word \"" + toSearch + "\" with case control in string = " + amount);
-            amount = regExSearch.search(data1, toSearch);
-            System.out.println("Count of word \"" + toSearch + "\" without case control in string = " + amount);
+        String data = str.toLowerCase();
+        RegExSearch search = new RegExSearch();
+        long amount = 0;
+
+        for (String toSearch : wordsToSearch) {
+            String word = toSearch.toLowerCase();
+            amount = search.search(str, toSearch);
+
+            System.out.println("Count of word \"" + toSearch +
+                    "\" with case control in string = " + amount);
+
+            amount = search.search(data, word);
+
+            System.out.println("Count of word \"" + word +
+                    "\" without case control in string = " + amount);
         }
     }
+
+    // Task 5.1
+    public static void printFoundByEasySearchWordsAndCount(String str,
+                                                           String[] wordsToSearch){
+        System.out.println();
+        System.out.println("Task 5.1");
+
+        if (str == null || str.length() == 0) {
+            System.out.println("bad string");
+            return;
+        }
+        if (wordsToSearch == null || wordsToSearch.length == 0) {
+            System.out.println("bad string array");
+            return;
+        }
+
+        String data = str.toLowerCase();
+        EasySearch search = new EasySearch();
+        long amount = 0;
+
+        for (String toSearch : wordsToSearch) {
+            String word = toSearch.toLowerCase();
+            amount = search.search(str, toSearch);
+
+            System.out.println("Count of word \"" + toSearch +
+                    "\" with case control in string = " + amount);
+
+            amount = search.search(data, word);
+
+            System.out.println("Count of word \"" + word +
+                    "\" without case control in string = " + amount);
+        }
+    }
+
 
     /**
      * Метод выода определеного кол-ва первых строк Map
@@ -108,16 +168,16 @@ public class ReadFileToString {
      * @param map    Map для вывода
      * @param number Количество ячеек для вывода
      */
-    public static void printNumberOfValuesOfMap(Map<String, Integer> map,
-                                                int number) {
-        Iterator<String> itr = map.keySet().iterator();
+    private static <V extends String, E extends Number> void printNumberOfValuesOfMap(Map<V, E> map, int number) {
+        final String[] times = {"раз", "раза", "раз"};
+        Iterator<V> itr = map.keySet().iterator();
         int i = 0;
-        StringsHomeTaskMy worldTimes = new StringsHomeTaskMy();
+        StringsHomeTaskMyVer3 worldTimes = new StringsHomeTaskMyVer3();
         while (i < number && itr.hasNext()) {
             String key = itr.next();
-            Integer value = map.get(key);
+            Integer value = (Integer) map.get(key);
             System.out.println("Слово \"" + key + "\" повторяется "
-                    + value + worldTimes.toTimes(value));
+                    + value + worldTimes.wordForNumber(value, times));
             i++;
         }
     }
@@ -127,8 +187,8 @@ public class ReadFileToString {
      * key   = String
      * value = Integer
      *
-     * @param unSortedMap не сортированный Mqp
-     * @return новый отсортированный Mqp
+     * @param unSortedMap не сортированный Map
+     * @return новый отсортированный Map
      */
     private static Map<String, Integer> sortByCount(Map<String,
             Integer> unSortedMap) {
@@ -146,10 +206,8 @@ public class ReadFileToString {
 
     /**
      * Метод сортировки Map по значению value
-     * key   = String
-     * value = Integer
      *
-     * @param unSortedMap не сортированный Mqp
+     * @param unSortedMap не сортированный Map
      */
     private static <V, E> void sortByCountVer2(Map<V,
             E> unSortedMap) {
