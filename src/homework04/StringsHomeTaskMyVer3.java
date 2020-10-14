@@ -40,7 +40,6 @@ public class StringsHomeTaskMyVer3 {
     final private String[] hundredth = {"сотая", "сотые", "сотых"};
     final private String[] tenths = {"десятая", "десятые", "десятых"};
     final private String[] weeks = {"неделя", "недели", "недель"};
-    final private String[] times = {"раз", "раза", "раз"};
     final private String[] hours = {"час", "часа", "часов"};
     final private String[] minutes = {"минута", "минуты", "минут"};
     final private String[] seconds = {"секунда", "секунды", "секунд"};
@@ -143,16 +142,21 @@ public class StringsHomeTaskMyVer3 {
     }
 
     /**
-     * Метод преобразования числа в кол-во раз
+     * Метод подстановки слова из массива к числу
      *
-     * @param number число
-     * @return строка кол-во раз
+     * @param number число к котоому нужно добавить слово
+     * @param arr массив из 3 слов для чисел (первое слово для числа 1,
+     * 2 для чисел от 2-4, 3 для остальных слов)
+     * @return необходимое слово
      */
-    public String toTimes(int number) {
+    public String wordForNumber(int number, String[] arr) {
         if (number < 0) {
             return "Bad date";
         }
-        return additionalWords(number, times);
+        if (arr.length != 3) {
+            return "Bad length of words arr";
+        }
+        return additionalWords(number, arr);
     }
 
     /**
