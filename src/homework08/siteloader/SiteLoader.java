@@ -32,7 +32,7 @@ public abstract class SiteLoader {
      * @param currencyName валюта которую мы ищем
      * @return курс который мы нашли
      */
-    protected final double load(String urlToSite, SiteLoader.Currency currencyName){
+    protected final CurParser load(String urlToSite, SiteLoader.Currency currencyName){
 
         StringBuilder content;
         boolean error;
@@ -70,7 +70,7 @@ public abstract class SiteLoader {
         return handle(content.toString(), currencyName);
     }
 
-    public abstract double load(SiteLoader.Currency currencyName);
+    public abstract CurParser load(SiteLoader.Currency currencyName);
 
     /**
      * Метод который будет дёрнут после успешной загрузки сайта
@@ -78,5 +78,5 @@ public abstract class SiteLoader {
      * @param currencyName валюта которую мы ищем
      * @return курс который мы нашли
      */
-    protected abstract double handle(String content, SiteLoader.Currency currencyName);
+    protected abstract CurParser handle(String content, SiteLoader.Currency currencyName);
 }

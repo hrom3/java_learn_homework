@@ -16,6 +16,7 @@ public class WriteFile {
             double rate = cur.getCurScale() * cur.getCurOffRate().doubleValue();
             str.append(rate);
             out.write(str.toString());
+            out.close();
 
         } catch (FileNotFoundException e) {
             System.out.println("Что-то не так с файлом, " + e.getMessage());

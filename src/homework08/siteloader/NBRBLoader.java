@@ -11,7 +11,7 @@ public class NBRBLoader extends SiteLoader{
      * @return курс который мы нашли
      */
     @Override
-    public double load(SiteLoader.Currency currencyName) {
+    public CurParser load(SiteLoader.Currency currencyName) {
         return load("https://www.nbrb.by/api/exrates/rates/" + currencyName.getId(), currencyName);
     }
 
@@ -22,12 +22,8 @@ public class NBRBLoader extends SiteLoader{
      * @return курс который мы нашли
      */
     @Override
-    protected double handle(String content, SiteLoader.Currency currencyName) {
+    protected CurParser handle(String content, SiteLoader.Currency currencyName) {
         CurParser currency = new CurParser(content);
-        if (currency != null && currency.getCurAbbrev().equals(currencyName.toString())) {
-            return (currency.getCurScale() * currency.getCurOffRate().doubleValue());
-        }
-        System.err.println("Что-то пошло не так");
-        return 0.0;
+        return currency;
     }
 }
