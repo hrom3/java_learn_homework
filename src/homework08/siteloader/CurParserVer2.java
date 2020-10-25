@@ -5,74 +5,90 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static homework08.utils.DateFromArgs.dateToStr;
+
 public class CurParserVer2 {
     @Override
     public String toString() {
         return "CurParser:" +
-                "\n Cur_ID = " + Cur_ID +
-                "\n Date = " + Date  +
-                "\n CurAbbrev = " + CurAbbrev +
-                "\n CurScale = " + CurScale +
-                "\n CurName = " + CurName +
-                "\n CurOffRate = " + CurOffRate;
+                "\n Cur_ID = " + curID +
+                "\n Date = " + date +
+                "\n CurAbbrev = " + curAbbrev +
+                "\n CurScale = " + curScale +
+                "\n CurName = " + curName +
+                "\n CurOffRate = " + curOffRate;
+    }
+    public String toStringForCons() {
+        return "Rate of " + curAbbrev +
+                " on date " + dateToStr(date)  +
+                " is " + (curScale * curOffRate.doubleValue());
     }
 
-    private int Cur_ID;
-    private Date Date;
-    private String CurAbbrev;
-    private int CurScale;
-    private String CurName;
-    private BigDecimal CurOffRate;
+    private String bank;
+    private int curID;
+    private Date date;
+    private String curAbbrev;
+    private int curScale;
+    private String curName;
+    private BigDecimal curOffRate;
 
-    public int getCur_ID() {
-        return Cur_ID;
+    public String getBank() {
+        return bank;
     }
 
-    public void setCur_ID(int cur_ID) {
-        Cur_ID = cur_ID;
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public int getCurID() {
+        return curID;
+    }
+
+    public void setCurID(int curID) {
+        this.curID = curID;
     }
 
     public Date getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(Date date) {
-        Date = date;
+        this.date = date;
     }
 
     public String getCurAbbrev() {
-        return CurAbbrev;
+        return curAbbrev;
     }
 
     public void setCurAbbrev(String curAbbrev) {
-        CurAbbrev = curAbbrev;
+        this.curAbbrev = curAbbrev;
     }
 
     public int getCurScale() {
-        return CurScale;
+        return curScale;
     }
 
     public void setCurScale(int curScale) {
-        CurScale = curScale;
+        this.curScale = curScale;
     }
 
     public String getCurName() {
-        return CurName;
+        return curName;
     }
 
     public void setCurName(String curName) {
-        CurName = curName;
+        this.curName = curName;
     }
 
     public BigDecimal getCurOffRate() {
-        return CurOffRate;
+        return curOffRate;
     }
 
     public void setCurOffRate(BigDecimal curOffRate) {
-        CurOffRate = curOffRate;
+        this.curOffRate = curOffRate;
     }
 
-    public CurParserVer2(String str) {
+    public CurParserVer2(String str, String bank) {
         if (str == null || str.length() <= 6) {
             return;
         }
@@ -92,25 +108,27 @@ public class CurParserVer2 {
             substr = substr.substring(indexEnd + 1);
         }
 
+        this.bank = bank;
+
         substr = arrStr[0].substring(arrStr[0].indexOf(':') + 1);
-        this.Cur_ID = Integer.parseInt(substr);
+        this.curID = Integer.parseInt(substr);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");//, Locale.ENGLISH);
         try {
-            this.Date = format.parse(arrStr[1].substring(arrStr[1].indexOf(':') + 2, arrStr[1].length() - 1));
+            this.date = format.parse(arrStr[1].substring(arrStr[1].indexOf(':') + 2, arrStr[1].length() - 1));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        this.CurAbbrev = arrStr[2].substring(arrStr[2].indexOf(':') + 2, arrStr[2].length() - 1);
+        this.curAbbrev = arrStr[2].substring(arrStr[2].indexOf(':') + 2, arrStr[2].length() - 1);
 
         substr = arrStr[3].substring(arrStr[3].indexOf(':') + 1);
-        this.CurScale = Integer.parseInt(substr);
+        this.curScale = Integer.parseInt(substr);
 
-        this.CurName = arrStr[4].substring(arrStr[4].indexOf(':') + 2, arrStr[4].length() - 1);
+        this.curName = arrStr[4].substring(arrStr[4].indexOf(':') + 2, arrStr[4].length() - 1);
 
         substr = arrStr[5].substring(arrStr[5].indexOf(':') + 1);
-        this.CurOffRate = new BigDecimal(substr);
+        this.curOffRate = new BigDecimal(substr);
     }
 
     public CurParserVer2() {
@@ -120,7 +138,7 @@ public class CurParserVer2 {
        final String fieldNameCurOffRate1 = "\"Cur_OfficialRate\":";
        String substr = str.substring((str.indexOf("\"Cur_OfficialRate\":") + 19), str.indexOf('}'));
        BigDecimal rate = new BigDecimal(substr);
-       this.CurOffRate = rate;
+       this.curOffRate = rate;
     }
 }
 

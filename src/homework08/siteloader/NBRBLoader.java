@@ -8,6 +8,14 @@ import java.util.Date;
  */
 public class NBRBLoader extends SiteLoader{
 
+    private final String BANK = "NBRB";
+    private String argsData;
+
+
+    public NBRBLoader(String argsData) {
+        this.argsData = argsData;
+    }
+
     final static SimpleDateFormat formatOfDate = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
@@ -16,23 +24,24 @@ public class NBRBLoader extends SiteLoader{
      * @return Объект типа курс валюты
      */
     @Override
-    public CurParser load(SiteLoader.Currency currencyName) {
+    public CurParserVer2 load(SiteLoader.Currency currencyName) {
         return load("https://www.nbrb.by/api/exrates/rates/" +
-                currencyName.getCodISO() + "?parammode=1", currencyName);
+                currencyName.getCodISO() + "?parammode=1&ondate=" +
+                this.argsData, currencyName);
     }
 
-    /**
-     *  Метод для запуска загрузки курса валют для определнной даты
-     *
-     * @param currencyName валюта которую мы ищем
-     * @param date дате на которую мы ишем
-     * @return Объект типа курс валюты
-     */
-    public CurParser loadByDate(SiteLoader.Currency currencyName, Date date) {
-        return load("https://www.nbrb.by/api/exrates/rates/"+
-                currencyName.getCodISO() + "?parammode=1&ondate=" +
-                formatOfDate.format(date), currencyName);
-    }
+//    /**
+//     *  Метод для запуска загрузки курса валют для определнной даты
+//     *
+//     * @param currencyName валюта которую мы ищем
+//     * @param date дате на которую мы ишем
+//     * @return Объект типа курс валюты
+//     */
+//    public CurParser loadByDate(SiteLoader.Currency currencyName, Date date) {
+//        return load("https://www.nbrb.by/api/exrates/rates/"+
+//                currencyName.getCodISO() + "?parammode=1&ondate=" +
+//                formatOfDate.format(date), currencyName);
+//    }
 
     /**
      * Обработка результата загрузки с сайта банка
@@ -41,8 +50,8 @@ public class NBRBLoader extends SiteLoader{
      * @return курс который мы нашли
      */
     @Override
-    protected CurParser handle(String content, SiteLoader.Currency currencyName) {
-        CurParser currency = new CurParser(content);
+    protected CurParserVer2 handle(String content, SiteLoader.Currency currencyName) {
+        CurParserVer2 currency = new CurParserVer2(content, this.BANK);
         return currency;
     }
 }

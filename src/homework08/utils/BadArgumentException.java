@@ -7,7 +7,7 @@ package homework08.utils;
 public class BadArgumentException extends IllegalArgumentException {
 
     public BadArgumentException() {
-        super("The program is launched with bad date argument. The current date is used.");
+        super("The program is launched with bad date argument."/* The current date is used."*/);
     }
     public BadArgumentException(String s) {
         super(s);

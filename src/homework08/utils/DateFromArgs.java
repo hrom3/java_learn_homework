@@ -45,9 +45,7 @@ public class DateFromArgs {
                 listOfDate.add(strToDate(strWithDate));
                 return listOfDate;
             } catch (ParseException e) {
-                System.out.println("Bad date argument.");
-                listOfDate.add(new Date());
-                return listOfDate;
+               throw new BadArgumentException(e.getMessage());
             }
         }
             // Заполняем list значениями типа 20.01.2016-20.02.2016
@@ -75,13 +73,9 @@ public class DateFromArgs {
                     }
                     return listOfDate;
                 }
-                System.out.println("Bad date argument.");
-                listOfDate.add(new Date());
-                return listOfDate;
+                throw new BadArgumentException();
             } catch (ParseException e) {
-                System.out.println("Bad date argument.");
-                listOfDate.add(new Date());
-                return listOfDate;
+                throw new BadArgumentException(e.getMessage());
             }
         }
             // Заполняем list значениями типа 20.01.2016,22.01.2016
@@ -97,29 +91,25 @@ public class DateFromArgs {
                         listOfDate.add(strToDate(strWithDate));
                      }
                 } catch (ParseException e) {
-                    System.out.println("Bad date argument.");
-                    listOfDate.add(new Date());
-                    return listOfDate;
+                    throw new BadArgumentException(e.getMessage());
                 }
             }
             return listOfDate;
         }
-        System.out.println("Bad date argument.");
-        listOfDate.add(new Date());
-        return listOfDate;
+        throw new BadArgumentException();
     }
 
     private static Date strToDate(String str) throws ParseException {
         return dateFromString.parse(str);
     }
 
-    private static String dateToStr(Date date) {
+    public static String dateToStr(Date date) {
         return stringFromDate.format(date);
     }
-    public static void main(String[] args) {
-        TreeSet<Date> dateTreeSet = dateArrListFromDate(args);
-        for (Date date : dateTreeSet) {
-            System.out.println(dateToStr(date));
-        }
-    }
+//    public static void main(String[] args) {
+//        TreeSet<Date> dateTreeSet = dateArrListFromDate(args);
+//        for (Date date : dateTreeSet) {
+//            System.out.println(dateToStr(date));
+//        }
+//    }
 }
