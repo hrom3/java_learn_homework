@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 /**
  * Реализация загрузчика сайтов
@@ -11,14 +12,20 @@ import java.net.URL;
 public abstract class SiteLoader {
 
     public enum Currency{
-        USD("145"),
-        EUR("292"),
-        RUB("298");
+        USD("145", "840"),
+        EUR("292", "978"),
+        RUB("298", "643");
 
         private String id;
+        private String codISO;
 
-        Currency(String id) {
+        Currency(String id, String codISO) {
             this.id = id;
+            this.codISO = codISO;
+        }
+
+        public String getCodISO(){
+            return this.codISO;
         }
 
         public String getId(){
@@ -71,6 +78,8 @@ public abstract class SiteLoader {
     }
 
     public abstract CurParser load(SiteLoader.Currency currencyName);
+
+    public abstract CurParser loadByDate(SiteLoader.Currency currencyName, Date date);
 
     /**
      * Метод который будет дёрнут после успешной загрузки сайта

@@ -4,9 +4,8 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
-public class CurParser {
+public class CurParserVer2 {
     @Override
     public String toString() {
         return "CurParser:" +
@@ -17,13 +16,6 @@ public class CurParser {
                 "\n CurName = " + CurName +
                 "\n CurOffRate = " + CurOffRate;
     }
-
-//    private final String fieldNameCUR_ID = "\"Cur_ID\"";
-//    private final String fieldNameDate = "\"Date\"";
-//    private final String fieldNameCurAbbrev = "\"Cur_Abbreviation\"";
-//    private final String fieldNameCurScale = "\"Cur_Scale\"";
-//    private final String fieldNameCurName = "\"Cur_Name\"";
-//    private final String fieldNameCurOffRate = "\"Cur_OfficialRate\"";
 
     private int Cur_ID;
     private Date Date;
@@ -80,7 +72,7 @@ public class CurParser {
         CurOffRate = curOffRate;
     }
 
-    public CurParser(String str) {
+    public CurParserVer2(String str) {
         if (str == null || str.length() <= 6) {
             return;
         }
@@ -121,7 +113,7 @@ public class CurParser {
         this.CurOffRate = new BigDecimal(substr);
     }
 
-    public CurParser() {
+    public CurParserVer2() {
     }
 
     public void setCurOffRate(String str) {
