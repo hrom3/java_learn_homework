@@ -1,12 +1,12 @@
 package homework08;
 
-import homework08.siteloader.CurParserVer2 ;
+import homework08.siteloader.ExchangeRate;
 
 import java.io.*;
 import java.util.Scanner;
 
 public class WriteFile {
-    public static void rateToFile(CurParserVer2 cur) {
+    public static void rateToFile(ExchangeRate cur) {
         String fileName = cur.getBank()+ "_"  + cur.getCurAbbrev() + ".txt";
         String path = getFilePath() + fileName;
 
@@ -15,7 +15,7 @@ public class WriteFile {
 
 
 
-    private static void rateToFile(CurParserVer2  cur, String path) {
+    private static void rateToFile(ExchangeRate cur, String path) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(path))) {
             if (cur == null) {
                 System.out.println("Отсутсвуют данные для сохранения");

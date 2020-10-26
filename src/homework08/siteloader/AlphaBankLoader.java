@@ -1,9 +1,9 @@
 package homework08.siteloader;
 
+import homework08.parsers.AlfaParser;
 import homework08.parsers.IParser;
 import homework08.parsers.NBRBParser;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static homework08.utils.DateFromArgs.dateToStrNBRB;
@@ -11,9 +11,9 @@ import static homework08.utils.DateFromArgs.dateToStrNBRB;
 /**
  * Загрузчик курса с сайта Нац. Банка
  */
-public class NBRBLoader extends SiteLoader{
+public class AlphaBankLoader extends SiteLoader{
 
-    private final String BANK = "NBRB";
+    private final String BANK = "AlphaBank";
 
     /**
      * Метод для запуска загрузки курса валют на текущую дату
@@ -22,9 +22,9 @@ public class NBRBLoader extends SiteLoader{
      * @return Объект типа курс валюты
      */
     @Override
-    public ExchangeRate load(SiteLoader.Currency currencyName) {
-        return load("https://www.nbrb.by/api/exrates/rates/" +
-                currencyName.getCodISO() + "?parammode=1", currencyName);
+    public ExchangeRate load(Currency currencyName) {
+        return load("https://developerhub.alfabank.by:8273/partner/1.0.0/public/rates",
+                currencyName);
     }
 
     /**
@@ -34,10 +34,9 @@ public class NBRBLoader extends SiteLoader{
      * @param date  дата на которую ищем
      * @return Объект типа курс валюты
      */
-    public ExchangeRate load(SiteLoader.Currency currencyName, Date date) {
-        return load("https://www.nbrb.by/api/exrates/rates/"+
-                currencyName.getCodISO() + "?parammode=1&ondate=" +
-                dateToStrNBRB(date), currencyName);
+    public ExchangeRate load(Currency currencyName, Date date) {
+        System.out.println("Нет возможности получить курс на выбранную дату");
+        return new ExchangeRate(this.BANK);
     }
 
     /**
@@ -48,9 +47,9 @@ public class NBRBLoader extends SiteLoader{
      * @return курс который мы нашли
      */
     @Override
-    protected ExchangeRate handle(String content, SiteLoader.Currency currencyName) {
+    protected ExchangeRate handle(String content, Currency currencyName) {
         ExchangeRate currency = new ExchangeRate(this.BANK);
-        IParser iParser = new NBRBParser();
+        IParser iParser = new AlfaParser();
 
         if (content != null) {
             iParser.currencyParser(content, currency);

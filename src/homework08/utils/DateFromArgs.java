@@ -9,8 +9,9 @@ import java.util.TreeSet;
 
 public class DateFromArgs {
 
-    private final static SimpleDateFormat stringFromDate = new SimpleDateFormat("yyyy-MM-dd");
-    private final static SimpleDateFormat dateFromString = new SimpleDateFormat("dd.MM.yyyy");
+    private final static SimpleDateFormat STRING_FROM_DATE_NBRB = new SimpleDateFormat("yyyy-MM-dd");
+    private final static SimpleDateFormat STRING_FROM_DATE_BELAGRO = new SimpleDateFormat("MM/dd/yyyy");
+    private final static SimpleDateFormat DATE_FROM_STRING = new SimpleDateFormat("dd.MM.yyyy");
 
     /**
      * Возвращает TreeSet со значениями тип Date
@@ -21,10 +22,6 @@ public class DateFromArgs {
     protected static TreeSet<Date> dateArrListFromDate(String[] args) {
         TreeSet<Date> listOfDate = new TreeSet<>();
 
-        if (args == null || args.length == 0) {
-            listOfDate.add(new Date());
-            return listOfDate;
-        }
         if (args.length > 1) {
             System.out.println("The program is launched with more than 1 argument. " +
                     "Only the first argument will be used");
@@ -100,11 +97,15 @@ public class DateFromArgs {
     }
 
     private static Date strToDate(String str) throws ParseException {
-        return dateFromString.parse(str);
+        return DATE_FROM_STRING.parse(str);
     }
 
-    public static String dateToStr(Date date) {
-        return stringFromDate.format(date);
+    public static String dateToStrNBRB(Date date) {
+        return STRING_FROM_DATE_NBRB.format(date);
+    }
+
+    public static String dateToStrBelAgro(Date date) {
+        return STRING_FROM_DATE_BELAGRO.format(date);
     }
 //    public static void main(String[] args) {
 //        TreeSet<Date> dateTreeSet = dateArrListFromDate(args);
