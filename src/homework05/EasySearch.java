@@ -1,6 +1,10 @@
 package homework05;
 
-// Task 5
+/* Task 4.1 Написать класс EasySearch. Реализовать поиск используя метод indexOf из
+ * класса String. В данной реализации запрещено использовать регулярные выражения в
+ * любом виде, для любых задач.
+ */
+
 public class EasySearch implements ISearchEngine {
     public long search(String text, String word) {
         long amount = 0;

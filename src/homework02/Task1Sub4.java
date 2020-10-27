@@ -1,6 +1,13 @@
 package homework02;
 
 public class Task1Sub4 {
+
+    /*
+     * 1.4.* Умножать число long a = 1; на 3 пока не произойдёт переполнение.
+     * В конце в консоль вывести сообщение со значением до переполнения и
+     * после переполнения
+     */
+
     public static void main(String[] args) {
         long a = 1;
         long aPrevious = 0;

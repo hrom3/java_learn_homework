@@ -1,5 +1,7 @@
-package homework06;
+package homework06.ver1;
 
+import homework06.dto.Animal;
+import homework06.dto.Person;
 import utils.RandomMy;
 
 import java.util.*;

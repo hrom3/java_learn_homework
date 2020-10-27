@@ -1,8 +1,9 @@
-package homework06;
+package homework06.dto;
 
+import homework06.ver2.IComparator;
 import org.jetbrains.annotations.NotNull;
 
-public class Person implements Comparable {
+public class Person implements Comparable, IComparator {
     String nick;
     String password;
 
@@ -64,7 +65,21 @@ public class Person implements Comparable {
 
     @Override
     public int compareTo(@NotNull Object o) {
+        return compareByAllFields(o);
+    }
+
+    public int compareByAllFields(@NotNull Object o) {
+        int result = this.compareByOneField(o);
+        if (result != 0) {
+            return result;
+        }
+        Person entry = (Person) o;
+        return this.getNick().compareTo(entry.getNick());
+    }
+
+    public int compareByOneField(@NotNull Object o) {
         Person entry = (Person) o;
         return this.password.length() - entry.password.length();
     }
 }
+

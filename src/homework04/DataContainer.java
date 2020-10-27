@@ -71,20 +71,7 @@ public class DataContainer<T> {
     }
 
     private int getIndex(T item) {
-        if (item == null) {
-            for (int i = 0; i < this.data.length; i++) {
-                if (this.data[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = 0; i < this.data.length; i++) {
-                if (item.equals(this.data[i])) {
-                    return i;
-                }
-            }
-        }
-        return -1;
+        return getIndex(item, 0);
     }
 
     private int getIndex(T item, int index) {

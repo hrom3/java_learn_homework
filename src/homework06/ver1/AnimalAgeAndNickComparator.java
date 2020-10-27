@@ -1,5 +1,6 @@
-package homework06;
+package homework06.ver1;
 
+import homework06.dto.Animal;
 import java.util.Comparator;
 
 public class AnimalAgeAndNickComparator implements Comparator<Animal> {

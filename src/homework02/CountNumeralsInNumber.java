@@ -7,6 +7,7 @@ public class CountNumeralsInNumber {
      * @param number передоваемое число
      * @return длинна переданного числа
      */
+
     public static int lengthOfNumber(long number) {
         int length;
         long modNumber = Math.abs(number);
@@ -19,7 +20,6 @@ public class CountNumeralsInNumber {
     }
 
     public static int lengthOfNumber(int number) {
-        long temp = (long) number;
-        return lengthOfNumber(temp);
+        return lengthOfNumber((long) number);
     }
 }

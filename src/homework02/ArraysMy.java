@@ -39,7 +39,7 @@ public class ArraysMy {
      * пользователя, после ввода каждого числа необходимо нажать "Enter"
      * ОГРАНИЧЕНИЯ: только целые числа
      *
-     * @return массив целочисленныз начений
+     * @return массив целочисленных начений
      */
     public static int[] getNumbersForArray() {   // ввод чисел пользователем
         int[] arrOfNumbers;
