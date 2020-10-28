@@ -12,21 +12,35 @@ public class AlfaParser implements IParser {
         if (content == null) {
             return;
         }
+        String[] string = new String[3];
+        int i = 0;
         Pattern pattern = Pattern.compile("\\{[\\w\\s.,:\"\\-A-Za-zА-яЁё]+\\}");
- //       content = "{\"rates\":\n" +
-//                "[\n" +
-//                "{\"sellRate\":88.000000,\"sellIso\":\"EUR\",\"sellCode\":978,\"buyRate\":93.000000,\"buyIso\":\"RUB\",\"buyCode\":643,\"quantity\":1,\"name\":null,\"date\":\"2020-10-23T10:10:56.000Z\"},\n" +
-//                "{\"sellRate\":74.000000,\"sellIso\":\"USD\",\"sellCode\":840,\"buyRate\":79.000000,\"buyIso\":\"RUB\",\"buyCode\":643,\"quantity\":1,\"name\":null,\"date\":\"2020-10-23T10:10:56.000Z\"},\n" +
-//                "{\"sellRate\":1.160000,\"sellIso\":\"EUR\",\"sellCode\":978,\"buyRate\":1.200000,\"buyIso\":\"USD\",\"buyCode\":840,\"quantity\":1,\"name\":null,\"date\":\"2020-10-23T10:10:56.000Z\"},\n" +
-//                "{\"sellRate\":3.250000,\"sellIso\":\"RUB\",\"sellCode\":643,\"buyRate\":3.400000,\"buyIso\":\"BYN\",\"buyCode\":933,\"quantity\":100,\"name\":\"российских рублей\",\"date\":\"2020-10-23T10:10:56.000Z\"},\n" +
-//                "{\"sellRate\":2.930000,\"sellIso\":\"EUR\",\"sellCode\":978,\"buyRate\":3.050000,\"buyIso\":\"BYN\",\"buyCode\":933,\"quantity\":1,\"name\":\"евро\",\"date\":\"2020-10-23T10:10:56.000Z\"},\n" +
-//                "{\"sellRate\":2.510000,\"sellIso\":\"USD\",\"sellCode\":840,\"buyRate\":2.570000,\"buyIso\":\"BYN\",\"buyCode\":933,\"quantity\":1,\"name\":\"доллар США\",\"date\":\"2020-10-23T10:10:56.000Z\"}\n" +
-//                "]\n" +
-//                "}";
+ //       content = "{\"rates\":[{\"sellRate\":2.970000,\"sellIso\":\"EUR\",\"sellCode\":978,\"buyRate\":3.120000,\"buyIso\":\"BYN\",\"buyCode\":933,\"quantity\":1,\"name\":\"евро\",\"date\":\"2020-10-28T11:55:52.000Z\"},{\"sellRate\":89.000000,\"sellIso\":\"EUR\",\"sellCode\":978,\"buyRate\":94.000000,\"buyIso\":\"RUB\",\"buyCode\":643,\"quantity\":1,\"name\":null,\"date\":\"2020-10-28T11:55:52.000Z\"},{\"sellRate\":1.160000,\"sellIso\":\"EUR\",\"sellCode\":978,\"buyRate\":1.200000,\"buyIso\":\"USD\",\"buyCode\":840,\"quantity\":1,\"name\":null,\"date\":\"2020-10-28T11:55:52.000Z\"},{\"sellRate\":3.270000,\"sellIso\":\"RUB\",\"sellCode\":643,\"buyRate\":3.420000,\"buyIso\":\"BYN\",\"buyCode\":933,\"quantity\":100,\"name\":\"российских рублей\",\"date\":\"2020-10-28T11:55:52.000Z\"},{\"sellRate\":2.570000,\"sellIso\":\"USD\",\"sellCode\":840,\"buyRate\":2.650000,\"buyIso\":\"BYN\",\"buyCode\":933,\"quantity\":1,\"name\":\"доллар США\",\"date\":\"2020-10-28T11:55:52.000Z\"},{\"sellRate\":75.000000,\"sellIso\":\"USD\",\"sellCode\":840,\"buyRate\":80.000000,\"buyIso\":\"RUB\",\"buyCode\":643,\"quantity\":1,\"name\":null,\"date\":\"2020-10-28T11:55:52.000Z\"}]}\n";
         Matcher matcher = pattern.matcher(content);
-        String substr;
         while (matcher.find()) {
-            substr = matcher.group().substring(matcher.group().indexOf('{') + 1, matcher.group().indexOf('}'));
+            String s = matcher.group();
+            String d = s.replaceAll("\\{?\"\\}?", "");
+            //           if (d.indexOf("933") < 0 || d.indexOf("840") < 0) {
+            if (d.indexOf("933") < 0) {
+                continue;
+            }
+            string[i] = d;
+            i++;
+        }
+//        for (String s : string) {
+//            Pattern pattern1 = Pattern.compile("sellRate:\\s*[\\d.]+");
+//            Matcher matcher1 = pattern1.matcher(s);
+//            while (matcher1.find()) {
+//                String k = matcher.group();
+//                s = k.replaceAll("sellRate:", "");
+//            }
+//        }
+
+
+
+        for (String s : string) {
+            System.out.println(s);
         }
    }
 }
+

@@ -73,8 +73,11 @@ public class ExchangeRate {
                 "\n CurOffRate = " + curOffRate;
     }
     public String toStringForCons() {
+        if (date == null) {
+            return "Bad date";
+        }
         return "Rate of " + curAbbrev +
-                " on date " + DATE_FORMAT.format(date)  +
+                " on date " + DATE_FORMAT.format(date) +
                 " is " + (curScale * curOffRate.doubleValue());
     }
 

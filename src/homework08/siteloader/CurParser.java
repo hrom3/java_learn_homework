@@ -33,51 +33,51 @@ public class CurParser {
     private BigDecimal CurOffRate;
 
     public int getCur_ID() {
-        return Cur_ID;
+        return this.Cur_ID;
     }
 
     public void setCur_ID(int cur_ID) {
-        Cur_ID = cur_ID;
+        this.Cur_ID = cur_ID;
     }
 
     public Date getDate() {
-        return Date;
+        return this.Date;
     }
 
     public void setDate(Date date) {
-        Date = date;
+        this.Date = date;
     }
 
     public String getCurAbbrev() {
-        return CurAbbrev;
+        return this.CurAbbrev;
     }
 
     public void setCurAbbrev(String curAbbrev) {
-        CurAbbrev = curAbbrev;
+        this.CurAbbrev = curAbbrev;
     }
 
     public int getCurScale() {
-        return CurScale;
+        return this.CurScale;
     }
 
     public void setCurScale(int curScale) {
-        CurScale = curScale;
+        this.CurScale = curScale;
     }
 
     public String getCurName() {
-        return CurName;
+        return this.CurName;
     }
 
     public void setCurName(String curName) {
-        CurName = curName;
+        this.CurName = curName;
     }
 
     public BigDecimal getCurOffRate() {
-        return CurOffRate;
+        return this.CurOffRate;
     }
 
     public void setCurOffRate(BigDecimal curOffRate) {
-        CurOffRate = curOffRate;
+        this.CurOffRate = curOffRate;
     }
 
     public CurParser(String str) {
