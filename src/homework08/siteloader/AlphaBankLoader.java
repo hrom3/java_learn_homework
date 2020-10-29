@@ -3,6 +3,7 @@ package homework08.siteloader;
 import homework08.parsers.AlfaParser;
 import homework08.parsers.IParser;
 import homework08.parsers.NBRBParser;
+import homework08.utils.Converters;
 
 import java.util.Date;
 
@@ -50,6 +51,8 @@ public class AlphaBankLoader extends SiteLoader{
     protected ExchangeRate handle(String content, Currency currencyName) {
         ExchangeRate currency = new ExchangeRate(this.BANK);
         IParser iParser = new AlfaParser();
+
+        currency.setCurID(Converters.getIntFromString(currencyName.getCodISO()));
 
         if (content != null) {
             iParser.currencyParser(content, currency);

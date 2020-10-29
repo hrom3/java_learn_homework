@@ -47,7 +47,11 @@ public class NBRBParser implements IParser {
         currency.setCurScale(Integer.parseInt(substr));
 
         substr = arrStr[5].substring(arrStr[5].indexOf(':') + 1);
-        currency.setCurOffRate(new BigDecimal(substr));
+        try {
+            currency.setCurOffRate(new BigDecimal(substr));
+        } catch (NumberFormatException e) {
+            currency.setCurOffRate(BigDecimal.ZERO);
+        }
     }
 
 //    public void setCurOffRate(String str) {

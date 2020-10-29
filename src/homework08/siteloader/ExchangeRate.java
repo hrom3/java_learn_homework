@@ -14,6 +14,17 @@ public class ExchangeRate {
     private String curAbbrev;
     private int curScale;
     private BigDecimal curOffRate;
+    private boolean isNoData = true;
+    private double CurOffSellRate;
+    private double CurOffBuyRate;
+
+    public boolean getIsNoData() {
+        return isNoData;
+    }
+
+    public void setIsNoData(boolean noData) {
+        isNoData = noData;
+    }
 
     public String getBank() {
         return bank;
@@ -72,6 +83,7 @@ public class ExchangeRate {
                 "\n CurScale = " + curScale +
                 "\n CurOffRate = " + curOffRate;
     }
+
     public String toStringForCons() {
         if (date == null) {
             return "Bad date";
@@ -81,19 +93,16 @@ public class ExchangeRate {
                 " is " + (curScale * curOffRate.doubleValue());
     }
 
+    public ExchangeRate() {
+    }
+
     public ExchangeRate(String bank) {
         this.bank = bank;
     }
 
-
-    public ExchangeRate() {
-    }
-
     public void setCurOffRate(String str) {
-       final String fieldNameCurOffRate1 = "\"Cur_OfficialRate\":";
-       String substr = str.substring((str.indexOf("\"Cur_OfficialRate\":") + 19), str.indexOf('}'));
-       BigDecimal rate = new BigDecimal(substr);
-       this.curOffRate = rate;
+        this.curOffRate = new BigDecimal(str);
     }
 }
+
 
