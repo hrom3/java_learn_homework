@@ -11,13 +11,13 @@ public class StrParser {
 
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(json);
+
         System.out.println(obj);
+
         CurParser euro = new CurParser();
+
         euro.setCurOffRate(json);
+
         System.out.println(euro.getCurOffRate());
-
-        CurParser euro2 = new CurParser(json);
-        System.out.println(euro2);
-
     }
 }

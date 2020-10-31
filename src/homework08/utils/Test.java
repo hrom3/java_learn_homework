@@ -17,54 +17,55 @@ public class Test {
 
         boolean isCurrentDate = false;
         TreeSet<Date> dates = new TreeSet<>();
+
         if (args == null || args.length == 0) {
-//            dates.add(new Date());
             isCurrentDate = true;
         } else {
-
             try {
                 dates = dateArrListFromDate(args);
             } catch (BadArgumentException e) {
-//                dates.add(new Date());
                 isCurrentDate = true;
             }
         }
         if (!isCurrentDate) {
             for (Date date : dates) {
-                //             System.out.println(dateToStr(date));
-//                printRates(new NBRBLoader(), date);
+//                System.out.println(dateToStr(date));
+                printRates(new NBRBLoader(), date);
             }
             printRates(new AlphaBankLoader(), dates.first());
 
-        } else printRates(new AlphaBankLoader());
+        } else {
+            printRates(new NBRBLoader());
+            printRates(new AlphaBankLoader());
+        }
 
     }
 
     public static void printRates(SiteLoader loader){
         ExchangeRate curEUR = loader.load(SiteLoader.Currency.EUR);
-        ExchangeRate curRUB = loader.load(SiteLoader.Currency.RUB);
-        ExchangeRate curUSD = loader.load(SiteLoader.Currency.USD);
+//        ExchangeRate curRUB = loader.load(SiteLoader.Currency.RUB);
+//        ExchangeRate curUSD = loader.load(SiteLoader.Currency.USD);
 
 //        WriteFile wrtf = new WriteFile();
         rateToFile(curEUR);
         
         System.out.println(curEUR.toStringForCons());
-        System.out.println(curRUB.toStringForCons());
-        System.out.println(curUSD.toStringForCons());
+ //       System.out.println(curRUB.toStringForCons());
+ //       System.out.println(curUSD.toStringForCons());
 
     }
 
     public static void printRates(SiteLoader loader, Date date){
         ExchangeRate curEUR = loader.load(SiteLoader.Currency.EUR, date);
-        ExchangeRate curRUB = loader.load(SiteLoader.Currency.RUB, date);
-        ExchangeRate curUSD = loader.load(SiteLoader.Currency.USD, date);
+ //       ExchangeRate curRUB = loader.load(SiteLoader.Currency.RUB, date);
+ //       ExchangeRate curUSD = loader.load(SiteLoader.Currency.USD, date);
 
 
         rateToFile(curEUR);
 
         System.out.println(curEUR.toStringForCons());
-        System.out.println(curRUB.toStringForCons());
-        System.out.println(curUSD.toStringForCons());
+ //       System.out.println(curRUB.toStringForCons());
+ //       System.out.println(curUSD.toStringForCons());
 
     }
 

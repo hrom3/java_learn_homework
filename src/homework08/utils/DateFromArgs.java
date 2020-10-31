@@ -1,6 +1,8 @@
 package homework08.utils;
 
 
+import homework08.parsers.AlfaParser;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -107,6 +109,15 @@ public class DateFromArgs {
     public static String dateToStrBelAgro(Date date) {
         return STRING_FROM_DATE_BELAGRO.format(date);
     }
+
+    public static Date strToDateAlfa(String str) {
+        try {
+            return STRING_FROM_DATE_NBRB.parse(str);
+        } catch (ParseException e) {
+            return new Date();
+        }
+    }
+
 //    public static void main(String[] args) {
 //        TreeSet<Date> dateTreeSet = dateArrListFromDate(args);
 //        for (Date date : dateTreeSet) {

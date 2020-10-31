@@ -17,7 +17,7 @@ public class WriteFile {
 
     private static void rateToFile(ExchangeRate cur, String path) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(path))) {
-            if (cur == null) {
+            if (cur == null || cur.getCurAbbrev() == null) {
                 System.out.println("Отсутсвуют данные для сохранения");
                 return;
             }
