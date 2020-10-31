@@ -9,7 +9,7 @@ import java.util.*;
 public class CollectionMainVer3 {
     public static void main(String[] args) {
         ArrayList<String> listOfTimes = new ArrayList<>();
-
+// добавить клас с get set
         MethodRunningTime timeAll = new MethodRunningTime();
         CollectionWorkVer3 genCollection = new CollectionWorkVer3();
         int collectionSize = 1_000_000;
