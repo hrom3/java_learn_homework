@@ -2,22 +2,21 @@ package homework06.ver2;
 
 import homework06.dto.Animal;
 import homework06.dto.Person;
-import utils.MethodRunningTime;
+import homework06.utils.MethodRunningTime;
 
 import java.util.*;
 
 public class CollectionMainVer3 {
     public static void main(String[] args) {
-        ArrayList<String> listOfTimes = new ArrayList<>();
-// добавить клас с get set
-        MethodRunningTime timeAll = new MethodRunningTime();
+        ArrayList<MethodRunningTime> listOfTimes = new ArrayList<>();
+        MethodRunningTime timeAll = new MethodRunningTime("Все операции");
         CollectionWorkVer3 genCollection = new CollectionWorkVer3();
-        int collectionSize = 1_000_000;
-//        int collectionSize = 100_000;
+ //       int collectionSize = 1_000_000;
+       int collectionSize = 100_000;
 
         // Создание коллекций
-
-        MethodRunningTime timeGenAll = new MethodRunningTime();
+        MethodRunningTime timeGenAll = new MethodRunningTime("Заполнение всех коллекций "
+                + collectionSize + " знач");
 
         LinkedList<Animal> animalLinkedList = new LinkedList<>();
         ArrayList<Animal> animalArrayList = new ArrayList<>();
@@ -29,56 +28,56 @@ public class CollectionMainVer3 {
         TreeSet<Person> personTreeSet = new TreeSet<>();
 
         // Заполнение коллекций
-        listOfTimes.add("Заполнение коллекций Animal");
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции LinkedList" +
+                " элементами Animal " + collectionSize + " знач");
+        genCollection.randomCollection(animalLinkedList, CollectionWorkVer3::
+                generateAnimal, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        MethodRunningTime timeGen1 = new MethodRunningTime();
-        genCollection.randomCollection(animalLinkedList, CollectionWorkVer3::generateAnimal, collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции LinkedList "
-                + collectionSize + " знач"));
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции ArrayList" +
+                " элементами Animal " + collectionSize + " знач");
+        genCollection.randomCollection(animalArrayList, CollectionWorkVer3::
+                generateAnimal, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeGen1.setStartTime();
-        genCollection.randomCollection(animalArrayList,CollectionWorkVer3::generateAnimal,  collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции ArrayList "
-                + collectionSize + " знач"));
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции HashSet " +
+                "элементами Animal " + collectionSize + " знач");
+        genCollection.randomCollection(animalHashSet, CollectionWorkVer3::
+                generateAnimal, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeGen1.setStartTime();
-        genCollection.randomCollection(animalHashSet, CollectionWorkVer3::generateAnimal, collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции HashSet "
-                + collectionSize + " знач"));
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции TreeSet " +
+                "элементами Animal " + collectionSize + " знач");
+        genCollection.randomCollection(animalTreeSet, CollectionWorkVer3::
+                generateAnimal, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeGen1.setStartTime();
-        genCollection.randomCollection(animalTreeSet, CollectionWorkVer3::generateAnimal, collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции TreeSet "
-                + collectionSize + " знач"));
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции LinkedList" +
+                " элементами Person " + collectionSize + " знач");
+        genCollection.randomCollection(personLinkedList, CollectionWorkVer3::
+                generatePerson, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Заполнение коллекций Person");
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции ArrayList " +
+                "элементами Person " + collectionSize + " знач");
+        genCollection.randomCollection(personArrayList, CollectionWorkVer3::
+                generatePerson, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeGen1.setStartTime();
-        genCollection.randomCollection(personLinkedList, CollectionWorkVer3::generatePerson, collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции LinkedList "
-                + collectionSize + " знач"));
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции HashSet" +
+                " элементами Person " + collectionSize + " знач");
+        genCollection.randomCollection(personHashSet, CollectionWorkVer3::
+                generatePerson, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeGen1.setStartTime();
-        genCollection.randomCollection(personArrayList, CollectionWorkVer3::generatePerson, collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции ArrayList "
-                + collectionSize + " знач"));
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции TreeSet" +
+                " элементами Person " + collectionSize + " знач");
+        genCollection.randomCollection(personTreeSet, CollectionWorkVer3::
+                generatePerson, collectionSize);
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeGen1.setStartTime();
-        genCollection.randomCollection(personHashSet, CollectionWorkVer3::generatePerson, collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции HashSet "
-                + collectionSize + " знач"));
-
-        timeGen1.setStartTime();
-        genCollection.randomCollection(personTreeSet, CollectionWorkVer3::generatePerson, collectionSize);
-        listOfTimes.add(timeGen1.toString("Заполнение коллекции TreeSet "
-                + collectionSize + " знач"));
-
-        listOfTimes.add("");
-
-        listOfTimes.add(timeGenAll.toString("Заполнение всех коллекций "
-                + collectionSize + " знач"));
-
-        listOfTimes.add("/____________/");
+        timeGenAll.setEndTime();
+        listOfTimes.add(timeGenAll);
 
         // Копирование коллекций перед сортировкой
         LinkedList<Animal> animalLinkedList1 = new LinkedList<>(animalLinkedList);
@@ -89,277 +88,250 @@ public class CollectionMainVer3 {
         HashSet<Person> personHashSet1 = new HashSet<>(personHashSet);
 
         // Сортировка коллекций
-        listOfTimes.add("Сортировка коллекций Animal средствами JDK");
+        MethodRunningTime timeSortAll = new MethodRunningTime("Сортировка всех коллекции");
 
-        MethodRunningTime timeSortAll = new MethodRunningTime();
-
-        MethodRunningTime timeSort1 = new MethodRunningTime();
+        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции LinkedList" +
+                " c элементами Animal средствами JDK ");
         animalLinkedList1.sort(new BigComparator<>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeSort1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции ArrayList" +
+                " c элементами Animal средствами JDK ");
         animalArrayList1.sort(new BigComparator<>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
         // Коллекции TreeSet сортируются при вставке с помощью compareTo
         // можно отсориторовать с помощью другого компаратора
         // Коллекции HashSet сортируются при вставке по HashCode,
         // который переопредлен в классе
-        timeSort1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции TreeSet" +
+                " c элементами Animal c сортировкой LowComparator");
         TreeSet<Animal> animalTreeSet1 = new TreeSet<>(new LowComparator<>());
 
         animalTreeSet1.addAll(animalArrayList);
-        listOfTimes.add(timeSort1.toString("Заполнение коллекции TreeSet c " +
-                "сортировкой LowComparator"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Сортировка коллекций Person средствами JDK");
-
-        timeSort1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции LinkedList" +
+                " c элементами Person");
         personLinkedList1.sort(new BigComparator<>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeSort1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции ArrayList" +
+                " c элементами Person");
         personArrayList1.sort(new BigComparator<>());
-        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
         // Коллекции TreeSet сортируются при вставке с помощью compareTo
         // можно отсориторовать с помощью другого компаратора
         // Коллекции HashSet сортируются при вставке по HashCode,
         // который переопредлен в классе
-        timeSort1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Заполнение коллекции TreeSet c " +
+                " c элементами Person сортировкой LowComparator");
         TreeSet<Person> personTreeSet1 = new TreeSet<>(new LowComparator<>());
 
         personTreeSet1.addAll(personArrayList);
-        listOfTimes.add(timeSort1.toString("Заполнение коллекции TreeSet c " +
-                "сортировкой LowComparator"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-//        // Сортировка коллекций пузырьком
-//        listOfTimes.add("Сортировка коллекций Animal методом " +
-//                "пузырьковой сортировки");
-//
-//        timeSort1.setStartTime();
+        // Сортировка коллекций пузырьком
+//        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции LinkedList" +
+//                " c элементами Animal пузырьковой сортировкой");
 //        SortMy.sort(animalArrayList, new BigComparator<Animal>());
-//        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
+//        addEndOperationTimeToLastItemInList(listOfTimes);
 //
-//        timeSort1.setStartTime();
+//        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции ArrayList" +
+//                " c элементами Animal пузырьковой сортировкой");
 //        SortMy.sort(animalLinkedList, new BigComparator<Animal>());
-//        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
+//        addEndOperationTimeToLastItemInList(listOfTimes);
 //
-//        listOfTimes.add("Сортировка коллекций Person методом " +
-//                "пузырьковой сортировки");
-//
-//        timeSort1.setStartTime();
+//        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции LinkedList" +
+//                " c элементами Person пузырьковой сортировкой");
 //        SortMy.sort(personLinkedList, new BigComparator<Animal>());
-//        listOfTimes.add(timeSort1.toString("Сортировка коллекции LinkedList"));
+//        addEndOperationTimeToLastItemInList(listOfTimes);
 //
-//        timeSort1.setStartTime();
+//        addNewOperationTimeToList(listOfTimes, "Сортировка коллекции ArrayList" +
+//                " c элементами Person пузырьковой сортировкой");
 //        SortMy.sort(personArrayList, new BigComparator<Animal>());
-//        listOfTimes.add(timeSort1.toString("Сортировка коллекции ArrayList"));
+//       addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("");
-
-        listOfTimes.add(timeSortAll.toString("Сортировка всех коллекции"));
-
-        listOfTimes.add("/____________/");
+        timeSortAll.setEndTime();
+        listOfTimes.add(timeSortAll);
 
         // Итерирование коллекций
-        listOfTimes.add("Итерирование коллекций Animal");
+        MethodRunningTime timeIterAll = new MethodRunningTime("Итерирование всех коллекций " +
+                "разными способами");
 
-        MethodRunningTime timeIterAll = new MethodRunningTime();
-
-        MethodRunningTime timeIter1 = new MethodRunningTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции LinkedList" +
+                " c элементами Animal средствами JDK");
         iteratorJDK(animalLinkedList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции LinkedList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции ArrayList" +
+                " c элементами Animal средствами JDK");
         iteratorJDK(animalArrayList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции ArrayList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции HashSet" +
+                " c элементами Animal средствами JDK");
         iteratorJDK(animalHashSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции HashSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции TreeSet"
+                + " c элементами Animal средствами JDK");
         iteratorJDK(animalTreeSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции TreeSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Итерирование коллекций Person");
-
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции LinkedList"
+                + " c элементами Person средствами JDK");
         iteratorJDK(personLinkedList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции LinkedList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции ArrayList"
+                + " c элементами Person средствами JDK");
         iteratorJDK(personArrayList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции ArrayList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции HashSet"
+                + " c элементами Person средствами JDK");
         iteratorJDK(personHashSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции HashSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции TreeSet"
+                + " c элементами Person средствами JDK");
         iteratorJDK(personTreeSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции TreeSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Итерирование коллекций Animal");
-
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции LinkedList" +
+                " c элементами Animal другим способом");
         myIteratorFor(animalLinkedList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции LinkedList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции ArrayList" +
+                " c элементами Animal другим способом");
         myIteratorFor(animalArrayList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции ArrayList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции HashSet" +
+                " c элементами Animal другим способом");
         myIteratorFor(animalHashSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции HashSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции TreeSet" +
+                " c элементами Animal другим способом");
         myIteratorFor(animalTreeSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции TreeSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Итерирование коллекций Person");
-
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции LinkedList" +
+                " c элементами Person другим способом");
         myIteratorFor(personLinkedList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции LinkedList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции ArrayList" +
+                " c элементами Person другим способом");
         myIteratorFor(personArrayList);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции ArrayList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции HashSet" +
+                " c элементами Person другим способом");
         myIteratorFor(personHashSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции HashSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeIter1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Итерирование коллекции TreeSet" +
+                " c элементами Person другим способом");
         myIteratorFor(personTreeSet);
-        listOfTimes.add(timeIter1.toString("Итерирование коллекции TreeSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("");
-
-        listOfTimes.add(timeIterAll.toString("Итерирование всех коллекций " +
-                "разными способами"));
-
-        listOfTimes.add("/____________/");
-
+        timeIterAll.setEndTime();
+        listOfTimes.add(timeIterAll);
 
         // Удаление коллекций
-        listOfTimes.add("Удаление коллекций Animal");
+        MethodRunningTime timeDelAll = new MethodRunningTime("Удаление всех коллекций " +
+                "разными способами");
 
-        MethodRunningTime timeDelAll = new MethodRunningTime();
-
-        MethodRunningTime timeDel1 = new MethodRunningTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции LinkedList" +
+                " c элементами Animal средствами JDK");
         deleteIteratorJDK(animalLinkedList);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции LinkedList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции ArrayList" +
+                " c элементами Animal средствами JDK");
         deleteIteratorJDK(animalArrayList);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции ArrayList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции HashSet" +
+                " c элементами Animal средствами JDK");
         deleteIteratorJDK(animalHashSet);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции HashSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции TreeSet" +
+                " c элементами Animal средствами JDK");
         deleteIteratorJDK(animalTreeSet);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции TreeSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Удаление коллекций Person");
-
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции LinkedList" +
+                " c элементами Person средствами JDK");
         deleteIteratorJDK(personLinkedList);
-        listOfTimes.add(timeDel1.toString("Удалениее коллекции LinkedList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции ArrayList" +
+                " c элементами Person средствами JDK");
         deleteIteratorJDK(personArrayList);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции ArrayList " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции HashSet" +
+                " c элементами Person средствами JDK");
         deleteIteratorJDK(personHashSet);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции HashSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции TreeSet" +
+                " c элементами Person средствами JDK");
         deleteIteratorJDK(personTreeSet);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции TreeSet " +
-                "средствами JDK"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Удаление коллекций Animal");
-
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции LinkedList" +
+                " c элементами Animal другим способом");
         myDeleteFor(animalLinkedList1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции LinkedList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции ArrayList" +
+                " c элементами Animal другим способом");
         myDeleteFor(animalArrayList1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции ArrayList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции HashSet" +
+                " c элементами Animal другим способом");
         myDeleteFor(animalHashSet1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции HashSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции TreeSet" +
+                " c элементами Animal другим способом");
         myDeleteFor(animalTreeSet1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции TreeSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("Удаление коллекций Person");
-
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции LinkedList" +
+                " c элементами Person другим способом");
         myDeleteFor(personLinkedList1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции LinkedList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции ArrayList" +
+                " c элементами Person другим способом");
         myDeleteFor(personArrayList1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции ArrayList " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции HashSet" +
+                " c элементами Person другим способом");
         myDeleteFor(personHashSet1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции HashSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        timeDel1.setStartTime();
+        addNewOperationTimeToList(listOfTimes, "Удаление коллекции TreeSet" +
+                " c элементами Person другим способом");
         myDeleteFor(personTreeSet1);
-        listOfTimes.add(timeDel1.toString("Удаление коллекции TreeSet " +
-                "другим способом"));
+        addEndOperationTimeToLastItemInList(listOfTimes);
 
-        listOfTimes.add("");
+        timeDelAll.setEndTime();
+        listOfTimes.add(timeDelAll);
 
-        listOfTimes.add(timeDelAll.toString("Удаление всех коллекций " +
-                "разными способами"));
-
-        listOfTimes.add("/____________/");
-        listOfTimes.add("");
-        listOfTimes.add(timeAll.toString("Все операции"));
+        timeAll.setEndTime();
+        listOfTimes.add(timeAll);
         iteratorJDK(listOfTimes);
         listOfTimes.clear();
     }
@@ -397,6 +369,15 @@ public class CollectionMainVer3 {
             iterator.remove();
         }
     }
+
+    public static void addNewOperationTimeToList(List<MethodRunningTime> list, String operationName) {
+        list.add(new MethodRunningTime(operationName));
+    }
+
+    public static void addEndOperationTimeToLastItemInList(List<MethodRunningTime> list) {
+        list.get(list.size() - 1).setEndTime();
+    }
+
 
 
 }
