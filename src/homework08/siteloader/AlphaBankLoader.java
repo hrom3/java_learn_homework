@@ -37,7 +37,9 @@ public class AlphaBankLoader extends SiteLoader{
      */
     public ExchangeRate load(Currency currencyName, Date date) {
         System.out.println("Нет возможности получить курс на выбранную дату");
-        return new ExchangeRate(this.BANK);
+        ExchangeRate currency =  new ExchangeRate(this.BANK);
+        currency.setCurID(Converters.getIntFromString(currencyName.getCodISO()));
+        return currency;
     }
 
     /**
@@ -51,7 +53,6 @@ public class AlphaBankLoader extends SiteLoader{
     protected ExchangeRate handle(String content, Currency currencyName) {
         ExchangeRate currency = new ExchangeRate(this.BANK);
         IParser iParser = new AlfaParser();
-
         currency.setCurID(Converters.getIntFromString(currencyName.getCodISO()));
 
         if (content != null) {

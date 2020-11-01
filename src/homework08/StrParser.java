@@ -1,7 +1,6 @@
 package homework08;
 
 
-import homework08.siteloader.CurParser;
 import utils.json.simple.parser.JSONParser;
 import utils.json.simple.parser.ParseException;
 
@@ -14,10 +13,5 @@ public class StrParser {
 
         System.out.println(obj);
 
-        CurParser euro = new CurParser();
-
-        euro.setCurOffRate(json);
-
-        System.out.println(euro.getCurOffRate());
     }
 }

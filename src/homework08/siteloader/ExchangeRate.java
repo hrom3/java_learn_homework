@@ -1,10 +1,13 @@
 package homework08.siteloader;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ExchangeRate {
+public class ExchangeRate implements Comparable, Serializable {
 
     final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -75,6 +78,34 @@ public class ExchangeRate {
     }
 
     @Override
+    public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            ExchangeRate that = (ExchangeRate) o;
+
+            return date != null ? date.equals(that.date) : that.date == null;
+        }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = bank != null ? bank.hashCode() : 0;
+        result = 31 * result + curID;
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (curAbbrev != null ? curAbbrev.hashCode() : 0);
+        result = 31 * result + curScale;
+        result = 31 * result + (curOffRate != null ? curOffRate.hashCode() : 0);
+        result = 31 * result + (isNoData ? 1 : 0);
+        temp = Double.doubleToLongBits(CurOffSellRate);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(CurOffBuyRate);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "CurParser:" +
                 "\n Cur_ID = " + curID +
@@ -88,7 +119,8 @@ public class ExchangeRate {
         if (date == null) {
             return "Bad date";
         }
-        return "Rate of " + curAbbrev +
+        return "Bank " + bank +
+                ". Rate of " + curAbbrev +
                 " on date " + DATE_FORMAT.format(date) +
                 " is " + (curScale * curOffRate.doubleValue());
     }
@@ -102,6 +134,22 @@ public class ExchangeRate {
 
     public void setCurOffRate(String str) {
         this.curOffRate = new BigDecimal(str);
+    }
+
+    @Override
+    public int compareTo(@NotNull Object o) {
+        ExchangeRate entry = (ExchangeRate) o;
+        if (isNoData) {
+            return Integer.MIN_VALUE;
+        }
+        int result = this.getBank().compareTo(entry.getBank());
+        if (result == 0) {
+            result = this.curID - entry.curID;
+        }
+        if (result == 0) {
+            return this.getDate().compareTo(entry.getDate());
+        }
+        return result;
     }
 }
 

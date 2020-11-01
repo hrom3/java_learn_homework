@@ -30,8 +30,8 @@ public class NBRBParser implements IParser {
             substr = substr.substring(indexEnd + 1);
         }
 
-        substr = arrStr[0].substring(arrStr[0].indexOf(':') + 1);
-        currency.setCurID(Integer.parseInt(substr));
+//        substr = arrStr[0].substring(arrStr[0].indexOf(':') + 1);
+//        currency.setCurID(Integer.parseInt(substr));
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");//, Locale.ENGLISH);
         try {

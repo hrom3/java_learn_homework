@@ -2,6 +2,7 @@ package homework08.siteloader;
 
 import homework08.parsers.IParser;
 import homework08.parsers.NBRBParser;
+import homework08.utils.Converters;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,6 +52,7 @@ public class NBRBLoader extends SiteLoader{
     protected ExchangeRate handle(String content, SiteLoader.Currency currencyName) {
         ExchangeRate currency = new ExchangeRate(this.BANK);
         IParser iParser = new NBRBParser();
+        currency.setCurID(Converters.getIntFromString(currencyName.getCodISO()));
 
         if (content != null) {
             iParser.currencyParser(content, currency);
