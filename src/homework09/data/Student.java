@@ -3,7 +3,6 @@ package homework09.data;
 import java.io.Serializable;
 
 public class Student implements Serializable, IStudentsComparator<Student> {
-//public class Student implements Serializable {
 
     private String firstName;
     private String lastName;
@@ -15,7 +14,7 @@ public class Student implements Serializable, IStudentsComparator<Student> {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
-        this.firstLastMiddleName = lastName + " " + firstName + " "  + middleName;
+        this.firstLastMiddleName = lastName + " " + firstName + " " + middleName;
 //        this.firstLastMiddleName = lastName.substring(0,1).toUpperCase() +
 //                firstName.substring(0,1).toUpperCase() +
 //                middleName.substring(0,1).toUpperCase();
@@ -34,9 +33,9 @@ public class Student implements Serializable, IStudentsComparator<Student> {
         return middleName;
     }
 
-    public String getFirstLastMiddleName() {
-        return firstLastMiddleName;
-    }
+//    public String getFirstLastMiddleName() {
+//        return firstLastMiddleName;
+//    }
 
     public int getAssessment() {
         return assessment;
@@ -47,6 +46,20 @@ public class Student implements Serializable, IStudentsComparator<Student> {
         return "Студент " +
                 "ФИО " + firstLastMiddleName +
                 " - оценка = " + assessment;
+    }
+
+    public String toStringToFileForHuman() {
+        return "Фамилия:\t" + lastName + ",\t Имя:\t" + firstName +
+                ",\tОтчество:\t" + middleName + ",\tФИО:\t" + firstLastMiddleName
+                + ",\tОценка:\t" + assessment;
+    }
+
+    public String toStringJson() {
+        return "{\"firstName\":\"" + firstName + '\"' +
+                ",\"lastName\":\"" + lastName + '\"' +
+                ",\"middleName\":\"" + middleName + '\"' +
+                ",\"firstLastMiddleName\":\"" + firstLastMiddleName + '\"' +
+                ",\"assessment\":" + assessment + '}';
     }
 
     @Override

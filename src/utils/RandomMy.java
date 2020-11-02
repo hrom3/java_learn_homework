@@ -1,6 +1,8 @@
 package utils;
 
 import homework05.ReadFileToString;
+
+import java.io.File;
 import java.util.Random;
 
 
@@ -49,8 +51,9 @@ public class RandomMy {
     }
 
     public static String randomNextName() {
-        String filePath =
-                "d:\\repository\\java_learn\\HomeTasks\\names.txt";
+        String filePath = "homework" + File.separator + "src" +
+                File.separator + "res" + File.separator +
+                "names.txt";
         String data = ReadFileToString.readAllBytes(filePath);
 
         // Получение массива слов из строки
