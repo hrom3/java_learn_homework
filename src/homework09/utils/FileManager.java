@@ -16,14 +16,23 @@ public class FileManager {
     private static final String NAME_FILE_OF_STUDENTS_JSON = "students.json";
     private static final String NAME_FILE_OF_STUDENTS_TXT = "students.txt";
     private static final String NAME_FILE_OF_TOP_STUDENTS = "top.bin";
-    private static final String DEFAULT_PATH = "";
-    //    private static final String DEFAULT_PATH = "homework" + File.separator +
-//            "src" + File.separator + "res" + File.separator;
+    private static final String NAME_FILE_OF_TOP_STUDENTS_TXT = "top.txt";
+    //    private static final String DEFAULT_PATH = "";
+    private static final String DEFAULT_PATH = "homework" + File.separator +
+            "src" + File.separator + "res" + File.separator;
     private static String path;
 
 
+    public static String getDefaultPath() {
+        return DEFAULT_PATH;
+    }
+
     public static String getNameFileOfTopStudents() {
         return NAME_FILE_OF_TOP_STUDENTS;
+    }
+
+    public static String getNameFileOfTopStudentsTxt() {
+        return NAME_FILE_OF_TOP_STUDENTS_TXT;
     }
 
     public static String getPath() {
@@ -34,39 +43,78 @@ public class FileManager {
         FileManager.path = path;
     }
 
-    private static File getFile() {
-        boolean isWrittenFile = false;
+    private static File getFileAndGenerateIfDonotFind() {
+        boolean isWrittenFile = true;
 
-        System.out.println("Введите путь и имя файла, и нажмите Enter");
-
-        Scanner sc = new Scanner(System.in);
-        String path = sc.nextLine();
+        String path = getFilePathFromConsole();
         File file = new File(path);
-        System.out.println(file.exists());
 
         if (!file.exists() || file.isDirectory()) {
             path = DEFAULT_PATH + NAME_FILE_OF_STUDENTS;
             file = new File(path);
             if (!file.exists() || file.isDirectory()) {
+                isWrittenFile = false;
                 List<Student> studentsList = new ArrayList<>();
+
                 GeneratorOfStudents.studentsGenerator(studentsList);
+
                 isWrittenFile = writeBinFile(path, studentsList);
+
                 writeTextFile(DEFAULT_PATH +
                         NAME_FILE_OF_STUDENTS_JSON, studentsList);
+
                 writeTextFileForHuman(DEFAULT_PATH +
                         NAME_FILE_OF_STUDENTS_TXT, studentsList);
             }
         }
-//        if (!isWrittenFile) {
-//            System.err.println("Файл не был создан!");
-//            return null;
-//        }
+        if (!isWrittenFile) {
+            System.err.println("Файл не был создан!");
+            return null;
+        }
 
-        setPath(path);
+        setPath(getPathWIthOutFileName(path));
         return file;
     }
 
-    private static <T extends Serializable> List<T> readFile(File file) {
+
+    public static File getFileToRead() {
+        String path = getFilePathFromConsole();
+        File file = new File(path);
+
+        if (!file.exists() || file.isDirectory()) {
+            path = DEFAULT_PATH + NAME_FILE_OF_TOP_STUDENTS;
+            file = new File(path);
+        }
+
+        setPath(getPathWIthOutFileName(path));
+
+        return file;
+    }
+
+
+    private static String getFilePathFromConsole() {
+        System.out.println("Введите путь и имя файла, и нажмите Enter");
+
+        Scanner sc = new Scanner(System.in);
+        String path = sc.nextLine();
+
+        return path;
+    }
+
+
+    private static String getPathWIthOutFileName(String pathWithFileName) {
+        String path = "";
+        if (pathWithFileName != null) {
+            int last = pathWithFileName.lastIndexOf(File.separator);
+            if (last > 1) {
+                path = pathWithFileName.substring(0, last + 1);
+            }
+        }
+        return path;
+     }
+
+
+    public static <T extends Serializable> List<T> readFile(File file) {
 
         if (file == null) {
             System.err.println("Данные отсутсвуют!");
@@ -80,16 +128,15 @@ public class FileManager {
 
         if (!isReadFile) {
             System.err.println("Файл не был прочитан!");
-            System.exit(666);
+            System.exit(555);
         }
         return list;
     }
 
+
     public static <T extends Serializable> List<T> getDataFromFile() {
-        return readFile(getFile());
+        return readFile(getFileAndGenerateIfDonotFind());
     }
-
-
 
 
 }
